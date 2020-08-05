@@ -34,6 +34,7 @@ class CEOController extends Controller
         $validator = Validator::make($data, [
             'name' => 'required|max:255',
             'year' => 'required|max:255',
+            'company_name'=>'required|max:255',
             'company_headquarters' => 'required|max:255',
             'what_company_does' => 'required'
         ]);
