@@ -22,3 +22,12 @@ Route::post('/login', 'Api\AuthController@login');
 
 Route::apiResource('/ceo', 'Api\CEOController')->middleware('auth:api');
 
+
+Route::get('posts', 'PostController@index');
+Route::group(['prefix' => 'post'], function () {
+    Route::post('add', 'PostController@add');
+    Route::get('edit/{id}', 'PostController@edit');
+    Route::post('update/{id}', 'PostController@update');
+    Route::delete('delete/{id}', 'PostController@delete');
+});
+

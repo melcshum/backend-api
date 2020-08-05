@@ -17,5 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::resource('coronas', 'CoronaController');
+
+// Route::get('/{any}', function () {
+//     return view('post');
+// })->where('any', '.*');
+
+//https://www.tutsmake.com/larave-vue-js-spa-crud-example-tutorial/
+Route::get('{any}', function () {
+    return view('app');
+})->where('any', 'posts');
