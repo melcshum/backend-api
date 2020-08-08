@@ -22,4 +22,4 @@ Route::post('/register', 'Api\AuthController@register');
 Route::post('/login', 'Api\AuthController@login');
 
 
-Route::apiResource('/scenarios', 'Api\ScenariosController');//->middleware('auth:api');
+Route::apiResource('/scenarios', 'Api\ScenariosController')->middleware('auth:api');

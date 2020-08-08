@@ -21,7 +21,7 @@ class CreateScenariosTable extends Migration
             $table->float('uncertainty')->default(0);
             $table->float('k_factor')->default(0);
             $table->unsignedInteger('time_limit')->default(0);
-            $table->float('boss_can_use')->comment('1 can use, 0 cannot use');
+            $table->float('boss_can_use')->default(0)->comment('1 can use, 0 cannot use');
             $table->timestamps();
         });
     }
