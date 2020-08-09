@@ -15,13 +15,13 @@ class CreateScenariosTable extends Migration
     {
         Schema::create('scenarios', function (Blueprint $table) {
             $table->id();
-            $table->string('scenario_name')->unique();
-            $table->string('card_prefab_name')->unique();
+            $table->string('name')->unique();
             $table->double('difficulty_rate')->default(0);
             $table->float('uncertainty')->default(0);
             $table->float('k_factor')->default(0);
             $table->unsignedInteger('time_limit')->default(0);
-            $table->float('boss_can_use')->default(0)->comment('1 can use, 0 cannot use');
+
+            $table->unsignedBigInteger('prefab_id')->nullable();
             $table->timestamps();
         });
     }
