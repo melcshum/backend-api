@@ -13,13 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'KnowledgeComponentController@index' );
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
+
+
+Route::get('/knowledgeComponents', 'KnowledgeComponentController@index');
+Route::resource('knowledgeComponents', 'KnowledgeComponentController');
+
+
+// Route::group(['prefix' => 'knowledgeComponents'], function () {
+//     Route::post('create', 'KnowledgeComponentController@create')->name('knowledgeComponents.create');
+//      Route::get('edit/{id}', 'KnowledgeComponentController@edit');
+//     // Route::post('update/{id}', 'KnowledgeComponentController@update');
+//     // Route::delete('delete/{id}', 'KnowledgeComponentController@delete');
+// });
 
 

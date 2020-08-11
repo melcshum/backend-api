@@ -18,8 +18,8 @@ class ScenariosController extends Controller
      */
     public function index()
     {
-        $ceos = Scenario::all();
-        return response(['scenario' => ScenarioResource::collection($ceos), 'message' => 'Retrieved successfully'], 200);
+        $scenarios = Scenario::all();
+        return response(['scenario' => ScenarioResource::collection($scenarios), 'message' => 'Retrieved successfully'], 200);
     }
 
     /**
@@ -33,8 +33,8 @@ class ScenariosController extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data, [
-            'scenario_name' => 'required|max:255',
-            'card_prefab_name' => 'required|max:255'
+            'name' => 'required|max:255',
+//            'card_prefab_name' => 'required|max:255'
         ]);
 
         if ($validator->fails()) {

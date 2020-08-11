@@ -11,4 +11,5 @@ class KnowledgeComponent extends Model
         'purpose',
         'level'
     ];
+
 }

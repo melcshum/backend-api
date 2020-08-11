@@ -23,3 +23,4 @@ Route::post('/login', 'Api\AuthController@login');
 
 
 Route::apiResource('/scenarios', 'Api\ScenariosController')->middleware('auth:api');
+//Route::apiResource('/knowledgeComponents', 'Api\KnowledgeComponentsController');//->middleware('auth:api');

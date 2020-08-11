@@ -30,8 +30,8 @@ class AppServiceProvider extends ServiceProvider
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
             $event->menu->add('MAIN NAVIGATION');
             $event->menu->add([
-                'text' => 'Blog',
-                'url' => 'admin/blog',
+                'text' => 'Knowledge Components',
+                'url' => '/knowledgeComponents',
             ]);
         });
     }
