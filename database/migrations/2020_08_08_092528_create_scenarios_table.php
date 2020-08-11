@@ -20,8 +20,6 @@ class CreateScenariosTable extends Migration
             $table->float('uncertainty')->default(0);
             $table->float('k_factor')->default(0);
             $table->unsignedInteger('time_limit')->default(0);
-
-            $table->unsignedBigInteger('prefab_id')->nullable();
             $table->timestamps();
         });
     }

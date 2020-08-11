@@ -15,9 +15,11 @@ class CreatePrefabsTable extends Migration
     {
         Schema::create('prefabs', function (Blueprint $table) {
             $table->id();
-            $table->string('card_prefab_name')->unique();
+            $table->string('name')->unique();
+            $table->string('level')->nullable();
             $table->tinyInteger('boss_can_use')->default(0)->comment('0 can use, 1 cannot use');
             $table->tinyInteger('is_enabled')->default(1)->comment('1 can enable, 0 not enable');
+
             $table->timestamps();
         });
     }

@@ -34,7 +34,6 @@ class ScenariosController extends Controller
 
         $validator = Validator::make($data, [
             'name' => 'required|max:255',
-//            'card_prefab_name' => 'required|max:255'
         ]);
 
         if ($validator->fails()) {

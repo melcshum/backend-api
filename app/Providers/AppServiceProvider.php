@@ -33,6 +33,14 @@ class AppServiceProvider extends ServiceProvider
                 'text' => 'Knowledge Components',
                 'url' => '/knowledgeComponents',
             ]);
+            $event->menu->add([
+                'text' => 'Scenarios',
+                'url' => '/scenarios',
+            ]);
+            $event->menu->add([
+                'text' => 'Prefabs',
+                'url' => '/prefabs',
+            ]);
         });
     }
 }

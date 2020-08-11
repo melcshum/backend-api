@@ -38,16 +38,15 @@ class KnowledgeComponentsController extends Controller
 
         $validator = Validator::make($data, [
             'name' => 'required|max:255',
-            'card_prefab_name' => 'required|max:255'
         ]);
 
         if ($validator->fails()) {
             return response(['error' => $validator->errors(), 'Validation Error']);
         }
 
-        $ceo = KnowledgeComponent::create($data);
+        $kc = KnowledgeComponent::create($data);
 
-        return response(['knowledgeComponent' => new KnowledgeComponentResource($ceo), 'message' => 'Created successfully'], 200);
+        return response(['knowledgeComponent' => new KnowledgeComponentResource($kc), 'message' => 'Created successfully'], 200);
     }
 
     /**

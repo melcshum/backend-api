@@ -25,11 +25,11 @@ Route::get('/knowledgeComponents', 'KnowledgeComponentController@index');
 Route::resource('knowledgeComponents', 'KnowledgeComponentController');
 
 
-// Route::group(['prefix' => 'knowledgeComponents'], function () {
-//     Route::post('create', 'KnowledgeComponentController@create')->name('knowledgeComponents.create');
-//      Route::get('edit/{id}', 'KnowledgeComponentController@edit');
-//     // Route::post('update/{id}', 'KnowledgeComponentController@update');
-//     // Route::delete('delete/{id}', 'KnowledgeComponentController@delete');
-// });
+Route::get('/scenarios', 'ScenariosController@index');
+
+Route::resource('scenarios', 'ScenariosController');
 
 
+Route::get('/prefab', 'PrefabsController@index');
+
+Route::resource('prefabs', 'PrefabsController');
