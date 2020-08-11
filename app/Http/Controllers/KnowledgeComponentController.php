@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\KnowledgeComponent;
 use Illuminate\Http\Request;
+use App\Http\Requests\KnowledgeComponentRequest;
 
 class KnowledgeComponentController extends Controller
 {
@@ -36,13 +37,9 @@ class KnowledgeComponentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(KnowledgeComponentRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'purpose' => 'required',
-            'level' => 'required|numeric',
-        ]);
+        $validatedData = $request->only('name', 'purpose', 'level');
         $show = KnowledgeComponent::create($validatedData);
 
         return redirect()->route('knowledgeComponents.index')->with('success', "Your Knowledge Component has been submitted");
@@ -79,14 +76,14 @@ class KnowledgeComponentController extends Controller
      * @param  \App\KnowledgeComponent  $knowledgeComponent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,  $id)
+    public function update(KnowledgeComponentRequest $request,  KnowledgeComponent $knowledgeComponent)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'purpose' => 'required',
-            'level' => 'required|numeric',
-        ]);
-        KnowledgeComponent::whereId($id)->update($validatedData);
+        // $validatedData = $request->validate([
+        //     'name' => 'required|max:255',
+        //     'purpose' => 'required',
+        //     'level' => 'required|numeric',
+        // ]);
+        $knowledgeComponent->update($request->only('name', 'purpose', 'level'));
 
         return redirect('/knowledgeComponents')->with('success', 'Your Knowledge Component is successfully updated');
     }
