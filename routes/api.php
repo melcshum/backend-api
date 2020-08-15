@@ -21,6 +21,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/register', 'Api\AuthController@register');
 Route::post('/login', 'Api\AuthController@login');
 
+// do it later
+//Route::get('/scenarios/{slug}', 'Api\ScenariosController@show')->name('scenarios.show');
 
-Route::apiResource('/scenarios', 'Api\ScenariosController')->middleware('auth:api');
-//Route::apiResource('/knowledgeComponents', 'Api\KnowledgeComponentsController');//->middleware('auth:api');
+Route::apiResource('/scenarios', 'Api\ScenariosController');
+//->middleware('auth:api');
+Route::apiResource('/knowledgeComponents', 'Api\KnowledgeComponentsController');//->middleware('auth:api');
+
+Route::get('/interactions', 'Api\InteractionsController@index');

@@ -19,5 +19,9 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ScenariosTableSeeder::class);
         $this->call(KnowledgeComponentsTableSeeder::class);
+
+        $this->call(InteractionSeeder::class);
+
+
     }
 }

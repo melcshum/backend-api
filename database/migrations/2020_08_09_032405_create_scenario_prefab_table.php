@@ -34,6 +34,6 @@ class CreateScenarioPrefabTable extends Migration
      */
     public function down()
     {
-        Schema::drop('scenario_prefab');
+        Schema::drop('prefab_scenario');
     }
 }
