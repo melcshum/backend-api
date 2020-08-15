@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scenario;
 use Illuminate\Database\Eloquent\Model;
 
 class Prefab extends Model
@@ -13,7 +14,8 @@ class Prefab extends Model
 
     public function scenarios()
     {
-        return $this->belongsToMany('App\Scenario')->withTimeStamps();
+        return $this->belongsToMany(Scenario::class)->withTimeStamps();
     }
+
 
 }

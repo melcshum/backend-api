@@ -119,5 +119,14 @@ class ScenariosTableSeeder extends Seeder
         foreach ($scenarios as $key => $value) {
             Scenario::create($value);
         }
+
+        // $sp =[ ['BasicCardTrim_Iron', 'BasicCardTrim']];
+
+        // foreach ($sp as $key => $value) {
+        //     $s = Scenario::where('name', '=', $value[0])->get();
+
+        //     $p = App\Prefab::where('name', '=', $value[1])->get();
+        //     $p->secanrios()->attach($p);
+        // }
     }
 }

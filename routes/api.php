@@ -24,6 +24,8 @@ Route::post('/login', 'Api\AuthController@login');
 // do it later
 //Route::get('/scenarios/{slug}', 'Api\ScenariosController@show')->name('scenarios.show');
 
+Route::get('/game/start', 'Api\GameController@start');
+
 Route::apiResource('/scenarios', 'Api\ScenariosController');
 //->middleware('auth:api');
 Route::apiResource('/knowledgeComponents', 'Api\KnowledgeComponentsController');//->middleware('auth:api');

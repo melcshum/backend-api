@@ -15,8 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'KnowledgeComponentController@index' );
 
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

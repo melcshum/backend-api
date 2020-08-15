@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Scenario;
 use App\Prefab;
 
 class PrefabsTableSeeder extends Seeder
@@ -43,7 +44,12 @@ class PrefabsTableSeeder extends Seeder
             ['name' => 'ForLoopDecrementWithEqualCard', 'boss_can_use' => 1],
         ];
         foreach ($prefabs as $key => $value) {
-            Prefab::create($value);
+            $f = Prefab::create($value);
+
+            $scenarios = Scenario::whereRaw("name like $value[name]%");
+            foreach ($scenarios as $s){
+                $f->scenarios->attach($s);
+            }
         }
     }
 }

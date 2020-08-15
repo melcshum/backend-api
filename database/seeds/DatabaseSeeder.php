@@ -15,9 +15,13 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CreateUsersSeeder::class);
 
-        $this->call(PrefabsTableSeeder::class);
 
         $this->call(ScenariosTableSeeder::class);
+
+        $this->call(PrefabsTableSeeder::class);
+        $this->call(PrefabScanrioTableSeeder::class);
+
+
         $this->call(KnowledgeComponentsTableSeeder::class);
 
         $this->call(InteractionSeeder::class);

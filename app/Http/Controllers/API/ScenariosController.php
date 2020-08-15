@@ -22,6 +22,8 @@ class ScenariosController extends Controller
         return response(['scenario' => ScenarioResource::collection($scenarios), 'message' => 'Retrieved successfully'], 200);
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
