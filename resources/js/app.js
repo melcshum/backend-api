@@ -14,6 +14,7 @@ import axios from 'axios';
 
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('chart-component', require('./components/ChartComponent.vue').default);
 
 // const router = new VueRouter({
 //     mode: 'history',

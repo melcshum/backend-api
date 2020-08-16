@@ -18,6 +18,8 @@
 
         <div class="card-body">
            <example-component></example-component>
+
+           <chart-component></chart-component>
         </div>
     </div>
 @stop
