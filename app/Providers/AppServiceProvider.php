@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
                 'submenu' => [
                     [
                         'text' => 'Game Experience',
-                        'url'  => '/api/game/start',
+                        'url'  => '/game',
                     ]
                 ]
             ]);

@@ -15,6 +15,8 @@
                     @endif
 
                     You are normal user.
+
+                    <example-component></example-component>
                 </div>
             </div>
         </div>

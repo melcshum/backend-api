@@ -21,6 +21,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
 
 
+Route::get('/game', 'ExperienceController@index');
+
+
+
+
 Route::get('/knowledgeComponents', 'KnowledgeComponentController@index');
 Route::resource('knowledgeComponents', 'KnowledgeComponentController');
 
@@ -34,3 +39,6 @@ Route::get('/prefab', 'PrefabsController@index');
 
 Route::resource('prefabs', 'PrefabsController');
 
+Route::get('/{any}', function(){
+    return view('/landing......');
+})->where('any', '.*');
