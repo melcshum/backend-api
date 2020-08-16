@@ -30,9 +30,21 @@ class AppServiceProvider extends ServiceProvider
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
             $event->menu->add('MAIN NAVIGATION');
             $event->menu->add([
+                'text'    => 'GAME Data',
+                'icon'    => 'fas fa-fw fa-share',
+                'submenu' => [
+                    [
+                        'text' => 'Game Experience',
+                        'url'  => '/api/game/start',
+                    ]
+                ]
+            ]);
+            $event->menu->add(['header' => 'account_settings']);
+            $event->menu->add([
                 'text' => 'Knowledge Components',
                 'url' => '/knowledgeComponents',
             ]);
+            $event->menu->add('SCENARIOS');
             $event->menu->add([
                 'text' => 'Scenarios',
                 'url' => '/scenarios',
@@ -41,6 +53,15 @@ class AppServiceProvider extends ServiceProvider
                 'text' => 'Prefabs',
                 'url' => '/prefabs',
             ]);
+
+
+            $event->menu->add([
+                'text' => 'Start game API',
+                'icon_color' => 'cyan',
+                'url' => '/api/game/start',
+            ]);
+
+
         });
     }
 }
