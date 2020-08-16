@@ -31,6 +31,13 @@ class  xAPISGFaker extends \Faker\Provider\Base
         ];
         return $this->generator->randomElement($availableObject);
     }
+
+    public function xApiDefintion()
+    {
+        $availableObject = ['Card1', 'Card2', 'Card3'];
+        return $this->generator->randomElement($availableObject);
+    }
+
     public function xApiResult()
     {
         $availableObject = ['result1', 'result2', 'result3'];
@@ -44,7 +51,8 @@ class  xAPISGFaker extends \Faker\Provider\Base
 
     public function xApiProgressObject()
     {
-        $availableObject = ['Progess1', 'Progess2', 'Progess3'];
+        $availableObject = ['Num Of Select', 'Num Of Drag', 'Num Of Click'];
+
         return $this->generator->randomElement($availableObject);
     }
     public function xApiProgressValue()
@@ -52,13 +60,4 @@ class  xAPISGFaker extends \Faker\Provider\Base
         $availableObject = [1, 2, 3];
         return $this->generator->randomElement($availableObject);
     }
-
-
-    public function xApiDefintion()
-    {
-
-        $availableObject = ['learnApple', 'learnOrange', 'learnLemon'];
-        return $this->generator->randomElement($availableObject);
-    }
-
 }

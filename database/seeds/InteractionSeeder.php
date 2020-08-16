@@ -24,7 +24,7 @@ class InteractionSeeder extends Seeder
 
         // $this->call(UsersTableSeeder::class);
 
-        factory(App\Interaction::class, 1)->create()
+        factory(App\Interaction::class, 10)->create()
             ->each(function ($i) {
                 $i->interaction_actor()
                     ->save(
