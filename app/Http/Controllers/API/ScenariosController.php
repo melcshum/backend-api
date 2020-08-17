@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
-class ScenariosController extends Controller
+class ScenariosController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,10 @@ class ScenariosController extends Controller
     public function index()
     {
         $scenarios = Scenario::all();
-        return response(['scenario' => ScenarioResource::collection($scenarios), 'message' => 'Retrieved successfully'], 200);
+        return  $this->sendResponse(
+            ScenarioResource::collection($scenarios),
+            "Retrieved successfully"
+        );
     }
 
 
@@ -39,12 +42,12 @@ class ScenariosController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response(['error' => $validator->errors(), 'Validation Error']);
+            $this->sendError('Validation Error', $validator->errors());
         }
 
         $ceo = Scenario::create($data);
 
-        return response(['scenario' => new ScenarioResource($ceo), 'message' => 'Created successfully'], 200);
+        return  $this->sendResponse(new ScenarioResource($ceo),  'Created successfully');
     }
 
     /**
@@ -53,9 +56,14 @@ class ScenariosController extends Controller
      * @param  \App\Scenario  $scenario
      * @return \Illuminate\Http\Response
      */
-    public function show(Scenario $scenario)
+    public function show($id)
     {
-        return response(['scenario' => new ScenarioResource($scenario), 'message' => 'Retrieved successfully'], 200);
+
+        $scenario = Scenario::find($id);
+        if (is_null($scenario)) {
+            return   $this->sendError('ITEM NOT FOUND');
+        }
+        return  $this->sendResponse(new ScenarioResource($scenario),  'Retrieved successfully');
     }
 
     /**
@@ -67,9 +75,10 @@ class ScenariosController extends Controller
      */
     public function update(Request $request, Scenario $scenario)
     {
+
         $scenario->update($request->all());
 
-        return response(['scenario' => new ScenarioResource($scenario), 'message' => 'Retrieved successfully'], 200);
+        return  $this->sendResponse(new ScenarioResource($scenario),  'Retrieved successfully');
     }
 
     /**
@@ -78,10 +87,15 @@ class ScenariosController extends Controller
      * @param  \App\Scenario  $scenario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Scenario $scenario)
+    public function destroy($id)
     {
+        $scenario = Scenario::find($id);
+        if (is_null($scenario)) {
+            return   $this->sendError('ITEM  NOT FOUND');
+        }
+
         $scenario->delete();
 
-        return response(['message' => 'Deleted']);
+        return  $this->sendResponse([], 'Deleted successfully');
     }
 }

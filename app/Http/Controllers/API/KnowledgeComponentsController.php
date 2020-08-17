@@ -8,7 +8,7 @@ use App\Http\Resources\KnowledgeComponentResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class KnowledgeComponentsController extends Controller
+class KnowledgeComponentsController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +19,11 @@ class KnowledgeComponentsController extends Controller
     {
 
         $kcs = KnowledgeComponent::all();
-        return response(['knowledgeComponent' => KnowledgeComponentResource::collection($kcs), 'message' => 'Retrieved successfully'], 200);
+        return  $this->sendResponse(KnowledgeComponentResource::collection($kcs), 'Retrieved successfully');
     }
 
-    public function create(){
-
+    public function create()
+    {
     }
 
     /**
@@ -41,12 +41,12 @@ class KnowledgeComponentsController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response(['error' => $validator->errors(), 'Validation Error']);
+            $this->sendError('Validation Error',   $validator->errors());
         }
 
         $kc = KnowledgeComponent::create($data);
 
-        return response(['knowledgeComponent' => new KnowledgeComponentResource($kc), 'message' => 'Created successfully'], 200);
+        return  $this->sendResponse(new KnowledgeComponentResource($kc), 'Created successfully');
     }
 
     /**
@@ -55,9 +55,14 @@ class KnowledgeComponentsController extends Controller
      * @param  \App\KnowledgeComponent  $knowledgeComponent
      * @return \Illuminate\Http\Response
      */
-    public function show(KnowledgeComponent $knowledgeComponent)
+    public function show($id)
     {
-        return response(['knowledgeComponent' => new KnowledgeComponentResource($knowledgeComponent), 'message' => 'Retrieved successfully'], 200);
+        $knowledgeComponent = knowledgeComponent::find($id);
+
+        if (is_null($knowledgeComponent)) {
+            return   $this->sendError('ITEM  NOT FOUND');
+        }
+        return  $this->sendResponse(new KnowledgeComponentResource($knowledgeComponent), 'Retrieved successfully');
     }
 
     /**
@@ -71,7 +76,7 @@ class KnowledgeComponentsController extends Controller
     {
         $knowledgeComponent->update($request->all());
 
-        return response(['knowledgeComponent' => new KnowledgeComponentResource($knowledgeComponent), 'message' => 'Retrieved successfully'], 200);
+        return  $this->sendResponse(new KnowledgeComponentResource($knowledgeComponent), 'Retrieved successfully');
     }
 
     /**
@@ -80,10 +85,16 @@ class KnowledgeComponentsController extends Controller
      * @param  \App\KnowledgeComponent  $knowledgeComponent
      * @return \Illuminate\Http\Response
      */
-    public function destroy(KnowledgeComponent $knowledgeComponent)
+    public function destroy($id)
     {
+
+        $knowledgeComponent = knowledgeComponent::find($id);
+
+        if (is_null($knowledgeComponent)) {
+            return   $this->sendError('ITEM  NOT FOUND');
+        }
         $knowledgeComponent->delete();
 
-        return response(['message' => 'Deleted']);
+        return response(['Deleted']);
     }
 }

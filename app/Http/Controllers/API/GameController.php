@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
-class GameController extends Controller
+class GameController extends BaseController
 {
 
 
@@ -21,8 +21,9 @@ class GameController extends Controller
     public function start()
     {
         $scenarios = Scenario::with('prefabs')->get();
-        return GameResource::collection($scenarios);
+        return  $this->sendResponse(
+            GameResource::collection($scenarios),
+            "Retrieved successfully"
+        );
     }
-
-
 }

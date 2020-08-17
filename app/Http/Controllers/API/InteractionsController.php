@@ -17,7 +17,7 @@ use App\InteractionExtension;
 use App\Http\Resources\InteractionResource;
 use Facade\FlareClient\Http\Response;
 
-class InteractionsController extends Controller
+class InteractionsController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -37,11 +37,10 @@ class InteractionsController extends Controller
                 'interaction_result.interaction_extensions'
             ]
         )->get();
-
-        return InteractionResource::collection($interactions)
-            ->additional(['meta' => [
-                'key' => 'value',
-            ]]);
+        return  $this->sendResponse(
+            InteractionResource::collection($interactions),
+            "Products retrieved successfully."
+        );
     }
 
     /**
