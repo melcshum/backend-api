@@ -24,5 +24,6 @@ class InteractionResource extends JsonResource
             'result' => new ResultResource($this->interaction_result),
             'timestamp'  => $this->created_at,
         ];
+        // return parent::toArray($request);
     }
 }

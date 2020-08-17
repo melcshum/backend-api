@@ -31,3 +31,6 @@ Route::apiResource('/scenarios', 'Api\ScenariosController');
 Route::apiResource('/knowledgeComponents', 'Api\KnowledgeComponentsController');//->middleware('auth:api');
 
 Route::get('/interactions', 'Api\InteractionsController@index');
+
+Route::post('/interactions', 'Api\InteractionsController@store');
+

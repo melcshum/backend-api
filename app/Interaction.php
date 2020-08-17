@@ -8,8 +8,9 @@ use App\InteractionAction;
 class Interaction extends Model
 {
     protected $fillable = [
-        'verb'
+        'title', 'type', 'name'
     ];
+
     public function interaction_actor()
     {
         return $this->hasOne(InteractionActor::class);

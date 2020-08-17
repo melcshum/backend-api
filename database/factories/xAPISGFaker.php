@@ -40,7 +40,7 @@ class  xAPISGFaker extends \Faker\Provider\Base
 
     public function xApiResult()
     {
-        $availableObject = ['result1', 'result2', 'result3'];
+        $availableObject = ['completed', 'skipped', 'progressing'];
         return $this->generator->randomElement($availableObject);
     }
     public function xApiActor()
