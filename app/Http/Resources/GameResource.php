@@ -20,7 +20,7 @@ class GameResource extends JsonResource
             'cardPrefabName' => $this->prefabs[0]->name,
             'difficultyRate' => $this->difficulty_rate,
             'timeLimit' => $this->time_limit,
-            'KFactor=>' => $this->k_factor,
+            'KFactor' => $this->k_factor,
             'uncertainty' => $this->uncertainty,
             'intBossCanUse' => $this->prefabs[0]->boss_can_use,
 
