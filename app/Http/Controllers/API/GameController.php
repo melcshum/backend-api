@@ -22,6 +22,7 @@ class GameController extends BaseController
     {
         $ss = [];
         $scenarios = Scenario::with('prefabs')->get();
+
         $ss = array_merge($ss, $scenarios->all());
 
         $scenarios = Scenario::with('prefabs')->where("name", "like", "BasicCard%")->get();
