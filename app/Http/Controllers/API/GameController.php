@@ -21,14 +21,14 @@ class GameController extends BaseController
     public function start()
     {
         $ss = [];
-        $scenarios = Scenario::with('prefabs')->get();
+        $scenarios = Scenario::with('prefabs')->get()->all();
 
-        $ss = array_merge($ss, $scenarios->all());
+        $ss = array_merge($ss, $scenarios);
 
-        $scenarios = Scenario::with('prefabs')->where("name", "like", "BasicCard%")->get();
+        $scenarios = Scenario::with('prefabs')->where("name", "like", "BasicCard%")->get()->all();
 
         for ($i = 0; $i < 5; $i++) {
-            $ss = array_merge($ss, $scenarios->all());
+            $ss = array_merge($ss, $scenarios);
         }
 
 
