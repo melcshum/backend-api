@@ -17,13 +17,12 @@ class GameResource extends JsonResource
 
         return [
             'scenarioID' => $this->name,
-            'pgrefabName' => $this->prefabs[0]->name,
+            'prefabName' => $this->prefabs[0]->name,
             'difficultyRate' => $this->difficulty_rate,
             'timeLimit' => $this->time_limit,
             'kFactor' => $this->k_factor,
             'uncertainty' => $this->uncertainty,
             'bossCanUse' => $this->prefabs[0]->boss_can_use == 1 ? true : false,
-
         ];
 
         //  return parent::toArray($request);
