@@ -39,6 +39,11 @@ Route::get('/prefab', 'PrefabsController@index');
 
 Route::resource('prefabs', 'PrefabsController');
 
+Route::get('export', 'MyController@export')->name('export');
+Route::get('importExportView', 'MyController@importExportView');
+Route::post('import', 'MyController@import')->name('import');
+
+
 Route::get('/{any}', function(){
     return view('/landing......');
 })->where('any', '.*');
