@@ -22,8 +22,11 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 
 
 // for showing to teacher / student
-Route::get('/game', 'ExperienceController@index');
+Route::get('/experience', 'ExperienceController@index');
 
+
+Route::get('/games', 'GamesController@index')->name('games.index');
+Route::get('/games/{gameslug}', 'GamesController@show')->name('games.show');
 
 Route::get('profiles', 'ProfileController@index');
 Route::resource('profiles', 'ProfileController');
