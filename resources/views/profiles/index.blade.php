@@ -32,7 +32,7 @@
 
                             <td>{{ $profile->user->id }}</td>
                             <td>{{ $profile->user->name }}</td>
-                            <td><a href=""> {{ $profile->name }}</a></td>
+                        <td><a href="{{$profile->url}}"> {{ $profile->name }}</a></td>
 
 
 

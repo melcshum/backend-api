@@ -6,7 +6,7 @@ use App\KnowledgeComponent;
 use Illuminate\Http\Request;
 use App\Http\Requests\KnowledgeComponentRequest;
 
-class KnowledgeComponentController extends Controller
+class KnowledgeComponentsController extends Controller
 {
     /**
      * Display a listing of the resource.

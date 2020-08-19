@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'KnowledgeComponentController@index' );
+Route::get('/', 'GamesController@index' );
 
 Auth::routes();
 
@@ -34,8 +34,8 @@ Route::resource('profiles', 'ProfileController');
 
 
 // knowledgeComponent
-Route::get('/knowledgeComponents', 'KnowledgeComponentController@index');
-Route::resource('knowledgeComponents', 'KnowledgeComponentController');
+Route::get('/KnowledgeComponents', 'KnowledgeComponentsController@index');
+Route::resource('knowledgeComponents', 'KnowledgeComponentsController');
 
 
 // scenarios and prefabs

@@ -15,4 +15,9 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getUrlAttribute()
+    {
+        return route('profiles.show', $this->id);
+    }
 }
