@@ -17,27 +17,35 @@
 
 @section('content')
 
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="mt-2"> <strong>Name</strong> {{ $game->name }}</div>
-                        <div class="mt-2"><strong> Description</strong> {{ $game->desc }}</div>
-                        <div class="mt-2"><strong> Purpose</strong> {{ $game->purpose }}</div>
-                    </div>
-                </div>
-            </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="mt-2"> <strong>Name</strong> {{ $game->name }}</div>
+            <div class="mt-2"><strong> Description</strong> {{ $game->desc }}</div>
+            <div class="mt-2"><strong> Purpose</strong> {{ $game->purpose }}</div>
         </div>
-    @stop
+    </div>
+
+    <div class="card">
+
+        <div class="card-body">
+            @include('scenarios._index', [
+            'scenarios'=>$scenarios
+            ])
+        </div>
+    </div>
 
 
-    @section('css')
-        <link rel="stylesheet" href="/css/admin_custom.css">
-    @stop
 
-    @section('js')
-        <script>
+    </div>
+@stop
 
-        </script>
-    @stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script>
+
+    </script>
+@stop

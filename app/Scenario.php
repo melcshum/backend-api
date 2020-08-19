@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Prefab;
+use App\Game;
 
 class Scenario extends Model
 {
@@ -14,8 +15,12 @@ class Scenario extends Model
         'uncertainty',
         'k_factor',
         'time_limit',
-
     ];
+
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
 
 
     public function prefabs()

@@ -116,8 +116,14 @@ class ScenariosTableSeeder extends Seeder
             ['name' => 'ForLoopDecrementWithEqualCard_med', 'difficulty_rate' => 3, 'time_limit' => 50000, 'k_factor' => 0.0075, 'uncertainty' => 0.01,],
             ['name' => 'ForLoopDecrementWithEqualCard_hard', 'difficulty_rate' => 4, 'time_limit' => 70000, 'k_factor' => 0.0075, 'uncertainty' => 0.01,],
         ];
+
+        $game =  App\Game::where('name', '=', 'GhostCoder Java')->get()->first();
+
+
         foreach ($scenarios as $key => $value) {
-            Scenario::create($value);
+            $s = Scenario::create($value);
+            $game->scenarios()->save($s);
+
         }
 
         // $sp =[ ['BasicCardTrim_Iron', 'BasicCardTrim']];

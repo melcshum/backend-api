@@ -47,9 +47,13 @@ class GamesController extends Controller
      * @param  \App\Game  $game
      * @return \Illuminate\Http\Response
      */
-    public function show(Game $game)
+    public function show($game)
     {
-        return view('games.show', compact('game'));
+
+        $game =  Game::with('scenarios')->where('id', '=', $game->id)->get()->first();
+        $scenarios=  $game->scenarios()->paginate(5);
+
+        return view('games.show', compact(['game', 'scenarios']));
     }
 
 

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Scenario;
 
 class Game extends Model
 {
@@ -22,5 +23,11 @@ class Game extends Model
     {
         //   return route("questions.show", $this->id);
         return route("games.show", $this->slug);
+    }
+
+
+    public function scenarios()
+    {
+        return $this->hasMany(Scenario::class);
     }
 }
