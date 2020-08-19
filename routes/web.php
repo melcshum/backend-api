@@ -25,21 +25,25 @@ Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middle
 Route::get('/game', 'ExperienceController@index');
 
 
+Route::get('profiles', 'ProfileController@index');
+Route::resource('profiles', 'ProfileController');
 
 
+
+// knowledgeComponent
 Route::get('/knowledgeComponents', 'KnowledgeComponentController@index');
 Route::resource('knowledgeComponents', 'KnowledgeComponentController');
 
 
+// scenarios and prefabs
 Route::get('/scenarios', 'ScenariosController@index');
-
 Route::resource('scenarios', 'ScenariosController');
-
-
 Route::get('/prefab', 'PrefabsController@index');
-
 Route::resource('prefabs', 'PrefabsController');
 
+
+// import and export
+// to it later
 Route::get('export', 'MyController@export')->name('export');
 Route::get('importExportView', 'MyController@importExportView');
 Route::post('import', 'MyController@import')->name('import');

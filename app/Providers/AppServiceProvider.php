@@ -30,9 +30,15 @@ class AppServiceProvider extends ServiceProvider
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
             $event->menu->add('MAIN NAVIGATION');
             $event->menu->add([
+                'text' => 'Player Profiles',
+                'url' => '/profiles',
+            ]);
+
+            $event->menu->add([
                 'text'    => 'GAME Data',
                 'icon'    => 'fas fa-fw fa-share',
                 'submenu' => [
+
                     [
                         'text' => 'Game Experience',
                         'url'  => '/game',
