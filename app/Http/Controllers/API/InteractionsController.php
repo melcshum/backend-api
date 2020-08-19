@@ -39,7 +39,7 @@ class InteractionsController extends BaseController
         )->get();
         return  $this->sendResponse(
             InteractionResource::collection($interactions),
-            "Products retrieved successfully."
+            "Interactions retrieved successfully."
         );
     }
 
@@ -54,7 +54,9 @@ class InteractionsController extends BaseController
 
 
         $interaction = new Interaction([
-            'title', 'type', 'name' => $request->input('actor.name'),
+            'title' => $request->input('title'),
+            'type' => $request->input('type'),
+            'name' => $request->input('actor.name'),
         ]);
 
         $iActor = new InteractionActor(
@@ -108,6 +110,42 @@ class InteractionsController extends BaseController
         return response(['Interaction' => new InteractionResource($interaction), 'message' => 'Created successfully'], 200);
     }
 
+    public function traceEvents($type)
+    {
+
+        if (!($type === "accessible"  ||
+                $type === "alternative" ||
+                $type === "completable" ||
+                $type === "gameobject")
+        ) {
+            return   $this->sendError('event  NOT FOUND');
+        }
+
+        $interactions = Interaction::with(
+            [
+                'interaction_actor',
+                'interaction_action',
+                'interaction_object',
+                'interaction_object.interaction_defintion',
+                'interaction_result',
+                'interaction_result.interaction_extensions'
+            ]
+        )->where('type', '=', $type)
+            ->get();
+
+
+        return  $this->sendResponse(
+            InteractionResource::collection($interactions),
+            "Interaction retrieved successfully."
+        );
+    }
+
+    public function sessiontrace($sessionid, $type)
+    {
+
+        dd($sessionid . ": " . $type);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -116,7 +154,23 @@ class InteractionsController extends BaseController
      */
     public function show($id)
     {
-        //
+        $interactions = Interaction::with(
+            [
+                'interaction_actor',
+                'interaction_action',
+                'interaction_object',
+                'interaction_object.interaction_defintion',
+                'interaction_result',
+                'interaction_result.interaction_extensions'
+            ]
+        )->find('id', '=', $id)
+            ->get();
+
+
+        return  $this->sendResponse(
+            InteractionResource::collection($interactions),
+            "Interaction retrieved successfully."
+        );
     }
 
     /**

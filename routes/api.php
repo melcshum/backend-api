@@ -30,7 +30,12 @@ Route::apiResource('/scenarios', 'Api\ScenariosController');
 //->middleware('auth:api');
 Route::apiResource('/knowledgeComponents', 'Api\KnowledgeComponentsController');//->middleware('auth:api');
 
-Route::get('/interactions', 'Api\InteractionsController@index');
 
+Route::get('/interactions/events/{type}/', 'Api\InteractionsController@traceEvents');
+
+Route::get('/interactions/session/{sessionid}/events/{type}/', 'Api\InteractionsController@sessionEvents');
+
+Route::get('/interactions/{id}', 'Api\InteractionsController@show');
+Route::get('/interactions', 'Api\InteractionsController@index');
 Route::post('/interactions', 'Api\InteractionsController@store');
 
