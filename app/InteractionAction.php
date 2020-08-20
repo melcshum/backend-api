@@ -12,9 +12,9 @@ class InteractionAction extends Model
     ];
 
 
+
     public function interaction()
     {
-
         return $this->belongsTo(Interaction::class);
     }
 }

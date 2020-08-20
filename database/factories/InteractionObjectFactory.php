@@ -10,6 +10,6 @@ $factory->define(InteractionObject::class, function (Faker $faker) {
     $faker->addProvider(new xAPISGFaker($faker));
 
     return [
-        'name' =>  $faker->xApiObject
+        'name' =>  App\Scenario::all('name')->random()->name
     ];
 });

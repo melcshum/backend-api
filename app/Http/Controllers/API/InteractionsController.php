@@ -9,7 +9,7 @@ use App\Interaction;
 use App\InteractionActor;
 use App\InteractionAction;
 use App\InteractionObject;
-use App\InteractionDefintion;
+use App\InteractionDefinition;
 use App\InteractionResult;
 use App\InteractionExtension;
 
@@ -32,7 +32,7 @@ class InteractionsController extends BaseController
                 'interaction_actor',
                 'interaction_action',
                 'interaction_object',
-                'interaction_object.interaction_defintion',
+                'interaction_object.interaction_definition',
                 'interaction_result',
                 'interaction_result.interaction_extensions'
             ]
@@ -70,7 +70,7 @@ class InteractionsController extends BaseController
         $iObject = new InteractionObject(
             ['name' =>  $request->input('object.name')]
         );
-        $iDef = new InteractionDefintion(
+        $iDef = new InteractionDefinition(
             ['name' =>  $request->input('object.definition.name')]
         );
         $iResult = new InteractionResult(
@@ -96,7 +96,7 @@ class InteractionsController extends BaseController
             $interaction->save();
             $interaction->interaction_actor()->save($iActor);
             $interaction->interaction_action()->save($iAction);
-            $interaction->interaction_object()->save($iObject)->interaction_defintion()->save($iDef);
+            $interaction->interaction_object()->save($iObject)->interaction_definition()->save($iDef);
             $interaction->interaction_result()->save($iResult)->interaction_extensions()->saveMany($extenions);
         } catch (\Exception $e) {
             // An error occured; cancel the transaction...
@@ -126,7 +126,7 @@ class InteractionsController extends BaseController
                 'interaction_actor',
                 'interaction_action',
                 'interaction_object',
-                'interaction_object.interaction_defintion',
+                'interaction_object.interaction_definition',
                 'interaction_result',
                 'interaction_result.interaction_extensions'
             ]
@@ -159,7 +159,7 @@ class InteractionsController extends BaseController
                 'interaction_actor',
                 'interaction_action',
                 'interaction_object',
-                'interaction_object.interaction_defintion',
+                'interaction_object.interaction_definition',
                 'interaction_result',
                 'interaction_result.interaction_extensions'
             ]

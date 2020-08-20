@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class InteractionDefintion extends Model
+class InteractionDefinition extends Model
 {
     protected $fillable = [
         'name'
     ];
 
-    public function interaction_Object()
+    public function interaction_object()
     {
         return $this->belongsTo(InteractionObject::class);
     }

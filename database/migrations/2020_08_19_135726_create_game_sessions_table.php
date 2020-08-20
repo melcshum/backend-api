@@ -16,7 +16,11 @@ class CreateGameSessionsTable extends Migration
         Schema::create('game_sessions', function (Blueprint $table) {
             $table->id();
             $table->string('session')->unique;
+
             $table->unsignedBigInteger('profile_id');
+            $table->foreign('profile_id')->references('id')->on('profiles')
+            ->onDelete('cascade');
+
 
             $table->unsignedBigInteger('game_id')->nullable;
             $table->foreign('game_id')->references('id')->on('games')

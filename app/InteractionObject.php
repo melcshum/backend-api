@@ -15,9 +15,9 @@ class InteractionObject extends Model
         return $this->belongsTo(Interaction::class);
     }
 
-    public function interaction_defintion()
+    public function interaction_definition()
     {
-        return $this->hasOne(InteractionDefintion::class);
+        return $this->hasOne(InteractionDefinition::class);
     }
 
 }

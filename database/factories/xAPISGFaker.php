@@ -32,7 +32,7 @@ class  xAPISGFaker extends \Faker\Provider\Base
         return $this->generator->randomElement($availableObject);
     }
 
-    public function xApiDefintion()
+    public function xApiDefinition()
     {
         $availableObject = ['Card1', 'Card2', 'Card3'];
         return $this->generator->randomElement($availableObject);

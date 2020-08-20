@@ -3,11 +3,15 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Interaction;
-use App\Model;
 use Faker\Generator as Faker;
 
 $factory->define(Interaction::class, function (Faker $faker) {
+    $type = collect(['Accessible', 'Alternative', 'Completable', 'GameObject'])->random();
+
     return [
-        'name' => $faker->name,
+        'name' => App\Profile::all()->random()->name,
+        'type' => $type,
+        'game_session_id' => App\GameSession::all()->random()->id,
     ];
 });
+

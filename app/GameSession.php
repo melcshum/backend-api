@@ -19,4 +19,9 @@ class GameSession extends Model
     {
         return $this->belongsTo(Profile::class);
     }
+
+    public function interactions()
+    {
+        return $this->hasMany(App\Interaction::class);
+    }
 }

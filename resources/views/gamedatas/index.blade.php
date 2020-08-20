@@ -20,27 +20,30 @@
         <div class="card-body">
 
             <ul class="list-group list-group-flush">
-                @foreach ($interactions as $key => $value)
+                @foreach ($interactions as $value)
                     <div class="list-group-item">
                         <div>
                             {{-- {{ $key }} --}}
                             {{ $value->name }}
-                            {{ $value->interaction_action->name }}
-                            {{ $value->interaction_object->name }} at {{ $value->created_at }}
+                            {{ $value->action_name }}
+                            {{ $value->object_name }} at {{ $value->created_at }}
                             <div>
-                                <strong> Defintion :</strong>{{ $value->interaction_object->interaction_defintion->name }}
+                                <strong> Definition :</strong>{{ $value->definition_name }}
                             </div>
                         </div>
                         <div>
                             <strong>Result </strong>
-                            @foreach ($value->interaction_result->interaction_extensions as $extension)
+                            @foreach ($value->result_extensions as $extension)
                                 </span> {{ $extension->name . ':' . $extension->value }} </span>
                             @endforeach
                         </div>
                     </div>
                 @endforeach
-            </ul>
 
+            </ul>
+            <div>
+                {{ $interactions->links() }}
+            </div>
             <example-component></example-component>
 
             <chart-component></chart-component>

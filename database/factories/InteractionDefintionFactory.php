@@ -2,13 +2,13 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\InteractionDefintion;
+use App\InteractionDefinition;
 use Faker\Generator as Faker;
 
-$factory->define(InteractionDefintion::class, function (Faker $faker) {
+$factory->define(InteractionDefinition::class, function (Faker $faker) {
     $faker->addProvider(new xAPISGFaker($faker));
 
     return [
-        'name' =>  $faker->xApiDefintion,
+        'name' =>  $faker->xApiDefinition,
     ];
 });

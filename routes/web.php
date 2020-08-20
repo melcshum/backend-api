@@ -13,7 +13,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'GamesController@index' );
+Route::get('/', function () {
+
+    return App\Interaction
+        ::with([
+             'interaction_actor',
+             'interaction_action',
+            'interaction_object',
+            'interaction_object.interaction_definition',
+            'interaction_result',
+            'interaction_result.interaction_extensions',
+            'game_session'
+        ])
+        //->where('game_session_id', '=', '1')
+       // ->where('type', '=', 'GameObject')
+        ->get()
+      //  ->groupby('action_name')
+      ;
+});
+
+//Route::get('/', 'GamesController@index' );
 
 Auth::routes();
 
@@ -29,10 +48,10 @@ Route::get('/games', 'GamesController@index')->name('games.index');
 Route::get('/games/{gameslug}', 'GamesController@show')->name('games.show');
 Route::get('/games/{gameslug}/gamesessions/', 'GamesController@showGameSessions')->name('games.gamesessions');
 
-Route::get('profiles', 'ProfilesController@index');
+Route::get('/profiles', 'ProfilesController@index');
 Route::resource('profiles', 'ProfilesController');
 
-Route::get('game_sessions', 'GameSessionsController@index');
+Route::get('/game_sessions', 'GameSessionsController@index');
 Route::resource('game_sessions', 'GameSessionsController');
 
 // knowledgeComponent
@@ -42,6 +61,7 @@ Route::resource('knowledgeComponents', 'KnowledgeComponentsController');
 
 // scenarios and prefabs
 Route::get('/scenarios', 'ScenariosController@index');
+Route::get('/scenarios/name/{name}', 'ScenariosController@showByName')->name('scenarios.showbyname');
 Route::resource('scenarios', 'ScenariosController');
 Route::get('/prefab', 'PrefabsController@index');
 Route::resource('prefabs', 'PrefabsController');
@@ -54,6 +74,6 @@ Route::get('importExportView', 'MyController@importExportView');
 Route::post('import', 'MyController@import')->name('import');
 
 
-Route::get('/{any}', function(){
+Route::get('/{any}', function () {
     return view('/landing......');
 })->where('any', '.*');

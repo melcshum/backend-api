@@ -17,7 +17,7 @@ class ObjectResource extends JsonResource
         return [
            // 'id' => $this->id,
             'name' => $this->name,
-            'definition' => new DefinitionResource($this->interaction_defintion),
+            'definition' => new DefinitionResource($this->interaction_definition),
         ];
      //   return parent::toArray($request);
     }

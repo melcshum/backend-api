@@ -51,6 +51,19 @@ class ScenariosController extends Controller
         $scenario = Scenario::findOrFail($id);
         return view("scenarios.show", compact('scenario'));
     }
+   /**
+     * Display the specified resource.
+     *
+     * @param  \App\Scenario  $scenario
+     * @return \Illuminate\Http\Response
+     */
+
+    public function showByName( $name)
+    {
+
+        $scenario = Scenario::where('name', '=', $name)->get()->first();
+        return view("scenarios.show", compact('scenario'));
+    }
 
 
     /**

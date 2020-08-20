@@ -40,13 +40,13 @@ class AppServiceProvider extends ServiceProvider
             ]);
 
             $event->menu->add([
-                'text'    => 'GAME Data',
+                'text'    => 'GAME Experience',
                 'icon'    => 'fas fa-fw fa-share',
                 'submenu' => [
 
                     [
                         'text' => 'Game Experience',
-                        'url'  => '/game',
+                        'url'  => '/experience',
                     ]
                 ]
             ]);
