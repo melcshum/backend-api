@@ -47,7 +47,7 @@ class ProfilesController extends Controller
      */
     public function show($id)
     {
-        $profile =  Profile::with('game_sessions')->find($id)->get()->first();
+        $profile =  Profile::with(['game_sessions', 'game_sessions.game'])->find($id)->get()->first();
         $game_sessions = $profile->game_sessions()->paginate(3);
 
         return view("profiles.show", compact(['profile', 'game_sessions']));

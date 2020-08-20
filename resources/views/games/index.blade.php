@@ -7,7 +7,8 @@
     <div class="d-flex align-items-center">
         <h2>Education Games</h2>
         <div class="ml-auto">
-            {{-- <a href="{{ route('games.create') }}" class="btn btn-outline-secondary">Create game</a> --}}
+            {{-- <a href="{{ route('games.create') }}"
+                class="btn btn-outline-secondary">Create game</a> --}}
         </div>
     </div>
 @stop
@@ -24,7 +25,7 @@
                         <td>Name</td>
                         <td>Desc</td>
                         <td>Purpose</td>
-                      </tr>
+                    </tr>
                 </thead>
                 <tbody>
                     @forelse ($games as $game)
@@ -32,7 +33,7 @@
                             <td><a href="{{ $game->url }}"> {{ $game->name }}</a></td>
                             <td>{{ $game->desc }}</td>
                             <td>{{ $game->purpose }}</td>
-
+                            <td><a href="{{ route('games.gamesessions', $game->slug) }}"> Session</a></td>
                         </tr>
                     @empty
                         <tr colspan="5">

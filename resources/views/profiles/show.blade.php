@@ -26,19 +26,21 @@
     <div class="card">
         <div class="card-body">
             @include('gamesessions._index', [
-            'game_sessions'=>$game_sessions
+            'game_sessions'=>$game_sessions,
+            'showGame'=>true,
+            'showStudent'=>false,
             ])
         </div>
     </div>
-    @stop
+@stop
 
 
-    @section('css')
-        <link rel="stylesheet" href="/css/admin_custom.css">
-    @stop
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
 
-    @section('js')
-        <script>
+@section('js')
+    <script>
 
-        </script>
-    @stop
+    </script>
+@stop

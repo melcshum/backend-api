@@ -30,4 +30,9 @@ class Game extends Model
     {
         return $this->hasMany(Scenario::class);
     }
+
+    public function game_sessions()
+    {
+        return $this->hasMany(GameSession::class);
+    }
 }

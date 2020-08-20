@@ -17,8 +17,11 @@ class CreateGameSessionsTable extends Migration
             $table->id();
             $table->string('session')->unique;
             $table->unsignedBigInteger('profile_id');
-            $table->foreign('profile_id')->references('id')->on('profiles')
+
+            $table->unsignedBigInteger('game_id')->nullable;
+            $table->foreign('game_id')->references('id')->on('games')
                 ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ class CreateGameSessionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('player_sessions');
+        Schema::dropIfExists('game_sessions');
     }
 }

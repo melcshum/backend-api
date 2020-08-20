@@ -27,6 +27,7 @@ Route::get('/experience', 'ExperienceController@index');
 
 Route::get('/games', 'GamesController@index')->name('games.index');
 Route::get('/games/{gameslug}', 'GamesController@show')->name('games.show');
+Route::get('/games/{gameslug}/gamesessions/', 'GamesController@showGameSessions')->name('games.gamesessions');
 
 Route::get('profiles', 'ProfilesController@index');
 Route::resource('profiles', 'ProfilesController');

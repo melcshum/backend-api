@@ -10,6 +10,11 @@ class GameSession extends Model
         'session'
     ];
 
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
+
     public function profile()
     {
         return $this->belongsTo(Profile::class);

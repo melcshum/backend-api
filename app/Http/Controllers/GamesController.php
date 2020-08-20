@@ -58,6 +58,23 @@ class GamesController extends Controller
 
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Game  $game
+     * @return \Illuminate\Http\Response
+     */
+    public function showGameSessions($game)
+    {
+
+        $game =  Game::with(['game_sessions', 'game_sessions.profile'])->where('id', '=', $game->id)->get()->first();
+        $game_sessions=  $game->game_sessions()->paginate(5);
+
+        return view('games.showGameSession', compact(['game', 'game_sessions']));
+    }
+
+
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Game  $game
