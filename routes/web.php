@@ -28,10 +28,11 @@ Route::get('/experience', 'ExperienceController@index');
 Route::get('/games', 'GamesController@index')->name('games.index');
 Route::get('/games/{gameslug}', 'GamesController@show')->name('games.show');
 
-Route::get('profiles', 'ProfileController@index');
-Route::resource('profiles', 'ProfileController');
+Route::get('profiles', 'ProfilesController@index');
+Route::resource('profiles', 'ProfilesController');
 
-
+Route::get('game_sessions', 'GameSessionsController@index');
+Route::resource('game_sessions', 'GameSessionsController');
 
 // knowledgeComponent
 Route::get('/KnowledgeComponents', 'KnowledgeComponentsController@index');

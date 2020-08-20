@@ -20,4 +20,10 @@ class Profile extends Model
     {
         return route('profiles.show', $this->id);
     }
+
+    public function game_sessions()
+    {
+        return $this->hasMany(GameSession::class);
+    }
+
 }

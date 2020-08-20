@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Profile;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class ProfilesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -45,10 +45,12 @@ class ProfileController extends Controller
      * @param  \App\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function show(Profile $profile)
+    public function show($id)
     {
+        $profile =  Profile::with('game_sessions')->find($id)->get()->first();
+        $game_sessions = $profile->game_sessions()->paginate(3);
 
-        return view("profiles.show", compact('profile'));
+        return view("profiles.show", compact(['profile', 'game_sessions']));
     }
 
     /**
