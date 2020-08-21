@@ -15,7 +15,7 @@ class ExperienceController extends Controller
     {
 
 
-   // $interactions = App\Interaction::all()->groupBy('interaction_action.name');
+        // $interactions = App\Interaction::all()->groupBy('interaction_action.name');
         $interactions = Interaction::with(
             [
                 'interaction_actor',
@@ -26,8 +26,7 @@ class ExperienceController extends Controller
                 'interaction_result.interaction_extensions',
                 'game_session'
             ]
-        )->latest()->paginate(5);
-
+        )->paginate(20);
         return view('gamesessiondatas.index', compact('interactions'));
     }
 }

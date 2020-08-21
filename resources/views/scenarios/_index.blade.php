@@ -7,7 +7,7 @@
                 <td> Uncertainty </td>
                 <td> K factor </td>
                 <td> Time_limit </td>
-                <td colspan="2">Action</td>
+                {{-- <td colspan="2">Action</td> --}}
             </tr>
         </thead>
         <tbody>

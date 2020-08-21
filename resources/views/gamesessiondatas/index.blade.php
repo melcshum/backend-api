@@ -19,7 +19,7 @@
         <div class="card-body">
             @include('gamesessiondatas._index', [
             'interactions'=>$interactions,
-
+            'caption'=> 'All players'
             ])
 
             <div>

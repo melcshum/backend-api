@@ -5,7 +5,7 @@
 @section('content_header')
 
     <div class="d-flex align-items-center">
-        <h2> Profile </h2>
+        <h2> </strong> {{ $profile->name }}'s Profile </h2>
         <div class="ml-auto align-items-right">
             <a href="{{ route('profiles.index') }}" class="btn btn-outline-secondary">Back to all Profiles</a>
         </div>
@@ -17,11 +17,11 @@
 @section('content')
 
 
-    <div class="card">
+    {{-- <div class="card">
         <div class="card-body">
             <div class="mt-2"> <strong>Name</strong> {{ $profile->name }}</div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="card">
         <div class="card-body">

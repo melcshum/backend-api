@@ -20,11 +20,11 @@ class Interaction extends Model
         'time_taken',
     ];
 
-    // //Attriubtes
-    // public function getActorNameAttribute()
-    // {
-    //     return $this->interaction_actor->name;
-    // }
+    //Attriubtes
+    public function getActorNameAttribute()
+    {
+        return $this->interaction_actor->name;
+    }
 
     public function getActionNameAttribute()
     {

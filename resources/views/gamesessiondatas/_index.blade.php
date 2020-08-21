@@ -23,7 +23,7 @@
 </ul> --}}
 <div class="m-4">
     <table class="table table-bordered  table-striped table-responsive m-2">
-        <caption> {{ $game_session->profile->name }} </caption>
+        <caption> {{ $caption }} </caption>
         <thead>
             <tr>
                 <td>Action</td>

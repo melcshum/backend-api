@@ -5,9 +5,10 @@
 @section('content_header')
 
     <div class="d-flex align-items-center">
-        <h2>Player Profile</h2>
+        <h2>Player Profiles</h2>
         <div class="ml-auto">
-            {{-- <a href="{{ route('profiles.create') }}" class="btn btn-outline-secondary">Create profile</a> --}}
+            {{-- <a href="{{ route('profiles.create') }}"
+                class="btn btn-outline-secondary">Create profile</a> --}}
         </div>
     </div>
 @stop
@@ -32,9 +33,7 @@
 
                             <td>{{ $profile->user->id }}</td>
                             <td>{{ $profile->user->name }}</td>
-                        <td><a href="{{$profile->url}}"> {{ $profile->name }}</a></td>
-
-
+                            <td><a href="{{ $profile->url }}"> {{ $profile->name }}</a></td>
 
                         </tr>
                     @empty

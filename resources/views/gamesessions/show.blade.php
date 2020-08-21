@@ -8,7 +8,7 @@
 
         <h3> Player Session <span class="text-muted"> (  {{ $game_session->session }} ) </span>at {{ $game_session->created_at }}</h3>
         <div class="ml-auto align-items-right">
-            <a href="{{ route('game_sessions.index') }}" class="btn btn-outline-secondary">Back to all Player</a>
+            <a href="{{ route("profiles.show", $game_session->profile->id )  }}" class="btn btn-outline-secondary">Back to Player</a>
         </div>
     </div>
 
@@ -25,7 +25,7 @@
 
                     @include('gamesessiondatas._index', [
                     'interactions'=>$interactions,
-
+                    'caption' => $game_session->profile->name
                     ])
 
                 </div>

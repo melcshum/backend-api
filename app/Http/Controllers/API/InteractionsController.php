@@ -34,9 +34,11 @@ class InteractionsController extends BaseController
                 'interaction_object',
                 'interaction_object.interaction_definition',
                 'interaction_result',
-                'interaction_result.interaction_extensions'
+                'interaction_result.interaction_extensions',
+                'game_session'
             ]
         )->get();
+
         return  $this->sendResponse(
             InteractionResource::collection($interactions),
             "Interactions retrieved successfully."
