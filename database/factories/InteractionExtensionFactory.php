@@ -10,6 +10,6 @@ $factory->define(InteractionExtension::class, function (Faker $faker) {
 
     return [
         'name' =>  $faker->xApiProgressObject,
-        'value' =>  $faker->xApiProgressValue,
+        'value' =>  $faker->randomDigit(),
     ];
 });

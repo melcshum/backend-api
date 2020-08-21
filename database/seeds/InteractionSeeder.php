@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 use App\Interaction;
-use Faker\Generator as Faker;
 
 class InteractionSeeder extends Seeder
 {
@@ -15,27 +14,39 @@ class InteractionSeeder extends Seeder
     {
 
 
-        factory(Interaction::class, 20)->create()
-            ->each(function ($i) {
+        $sessions = App\GameSession::with('profile')->get()->all();
+        foreach ($sessions as $session) {
 
-                $verblist = [
-                    'Accessible' => ['Accessed', 'Skipped'],
-                    'Alternative' => ['Selected', 'Unlocked'],
-                    'Completable' => ['Accessed', 'Skipped'],
-                    'GameObject' => ['Accessed', 'Skipped'],
-                ];
-                $cardName = App\Scenario::all('name')->random();
+            factory(Interaction::class, 100)->create([
+                'name' => $session->profile->name,
+                'type' => collect(['Accessible', 'Alternative', 'Completable', 'GameObject'])->random(),
+                'game_session_id' => $session->id,
+
+            ])->each(function ($i) {
 
                 $i->interaction_actor()
                     ->save(
                         factory('App\InteractionActor')->make(["name" => $i->name])
                     );
 
+
+                // based on the previous selected object type, update the options
+                $verblist = [
+                    'Accessible' => ['Accessed', 'Skipped'],
+                    'Alternative' => ['Selected', 'Unlocked'],
+                    'Completable' => ['Accessed', 'Skipped'],
+                    'GameObject' => ['Accessed', 'Skipped'],
+                ];
                 $verbs = $verblist[$i->type];
+
                 $i->interaction_action()->save(
                     factory('App\InteractionAction')->make(["name" => collect($verbs)->random()])
                 );
+
                 $cardName = "http://localhost/scenarios/name/" . App\Scenario::all('name')->random()->name;
+
+
+
                 $i->interaction_object()
                     ->save(
                         factory(App\InteractionObject::class)->make(['name' => 'quest'])
@@ -48,9 +59,26 @@ class InteractionSeeder extends Seeder
                     ->save(
                         factory(App\InteractionResult::class)->make()
                     )->interaction_extensions()
-                    ->saveMany(factory(App\InteractionExtension::class, 3)->make());
-            });
+                    ->saveMany(
+                        [
+                            factory(App\InteractionExtension::class)->make([
+                                'name' => 'Select', 'value' => rand ( 1, 100)
+                            ]),
 
+                            factory(App\InteractionExtension::class)->make([
+                                'name' => 'Drag', 'value' => rand ( 1, 100)
+                            ]),
+
+                            factory(App\InteractionExtension::class)->make([
+                                'name' => 'Click', 'value' => rand ( 1, 100)
+                            ]),
+                            factory(App\InteractionExtension::class)->make([
+                                'name' => 'TimeTaken', 'value' => rand ( 1, 10000000)
+                            ])
+                        ]
+                    );
+            });
+        }
 
 
         // $i = new Interaction;

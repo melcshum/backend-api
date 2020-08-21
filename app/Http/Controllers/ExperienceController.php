@@ -26,9 +26,8 @@ class ExperienceController extends Controller
                 'interaction_result.interaction_extensions',
                 'game_session'
             ]
-        )->all()->groupBy('interaction_action.name');
+        )->latest()->paginate(5);
 
-        var_dump($interactions);
-        return view('gamedatas.index', compact('interactions'));
+        return view('gamesessiondatas.index', compact('interactions'));
     }
 }

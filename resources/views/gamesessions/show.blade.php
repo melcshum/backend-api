@@ -5,42 +5,40 @@
 @section('content_header')
 
     <div class="d-flex align-items-center">
-        <h2> Session for individual student </h2>
+
+        <h3> Player Session <span class="text-muted"> (  {{ $game_session->session }} ) </span>at {{ $game_session->created_at }}</h3>
         <div class="ml-auto align-items-right">
-            <a href="{{ route('game_sessions.index') }}" class="btn btn-outline-secondary">Back to all Sessions</a>
+            <a href="{{ route('game_sessions.index') }}" class="btn btn-outline-secondary">Back to all Player</a>
         </div>
     </div>
-
 
 @stop
 
 @section('content')
 
+
     <div class="row">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-header">
-                    Session
+        <div class="card">
+
+            <div class="card-body">
+                <div>
+
+                    @include('gamesessiondatas._index', [
+                    'interactions'=>$interactions,
+
+                    ])
+
                 </div>
-                <div class="card-body">
-                    <div class="mt-2"> <strong>session</strong> {{ $game_session->session }}</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-header">
-                    Event
-                </div>
-                <div class="card-body">
-                    Sub
+
+
+                <div>
+                    {{ $interactions->links() }}
                 </div>
             </div>
         </div>
     </div>
 @stop
+
 
 
 @section('css')

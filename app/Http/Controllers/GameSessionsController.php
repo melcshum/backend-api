@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Interaction;
 use App\GameSession;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+
 
 class GameSessionsController extends Controller
 {
@@ -46,9 +49,29 @@ class GameSessionsController extends Controller
      */
     public function show(GameSession $game_session)
     {
-        return view('gamesessions.show', compact('game_session'));
+        $interactions =  $this->getInteractions($game_session->id);
+        return view('gamesessions.show', compact('game_session', 'interactions'));
+    }
 
- }
+    public function getInteractions($interaction_id)
+    {
+        $interactions = Interaction::with([
+            'interaction_actor',
+            'interaction_action',
+            'interaction_object',
+            'interaction_object.interaction_definition',
+            'interaction_result',
+            'interaction_result.interaction_extensions',
+            'game_session'
+        ])
+            ->where('game_session_id', '=', $interaction_id)
+            //        ->where('type', '=', 'GameObject')
+            //->get()
+            ->paginate(20);
+
+        //  ->groupby('action_name')
+        return $interactions;
+    }
 
     /**
      * Show the form for editing the specified resource.

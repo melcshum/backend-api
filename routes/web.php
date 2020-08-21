@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/test', function () {
 
     return App\Interaction
         ::with([
@@ -32,7 +32,7 @@ Route::get('/', function () {
       ;
 });
 
-//Route::get('/', 'GamesController@index' );
+Route::get('/', 'GamesController@index' );
 
 Auth::routes();
 

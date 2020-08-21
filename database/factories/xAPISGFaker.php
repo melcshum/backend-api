@@ -51,7 +51,7 @@ class  xAPISGFaker extends \Faker\Provider\Base
 
     public function xApiProgressObject()
     {
-        $availableObject = ['Num Of Select', 'Num Of Drag', 'Num Of Click'];
+        $availableObject = ['Select', 'Drag', 'Click'];
 
         return $this->generator->randomElement($availableObject);
     }

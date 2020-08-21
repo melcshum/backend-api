@@ -2,31 +2,34 @@
     <table class="table table-striped table-responsive">
         <thead>
             <tr>
-
+                <td>ID</td>
                 @if ($showGame)
                     <td>Game</td>
                 @endif
-                <td>Session</td>
                 @if ($showStudent)
                     <td>Student</td>
                 @endif
 
+                <td>Session</td>
+                <td>Play Time</td>
             </tr>
         </thead>
         <tbody>
             @forelse ($game_sessions as $session)
                 <tr>
 
+                    <td> {{ $session->id }}</td>
                     @if ($showGame)
                         <td><a href="{{ route('games.show', $session->game->id) }}"> {{ $session->game->name }}</a></td>
                     @endif
-
-                    <td><a href="{{ route('game_sessions.show', $session->id) }}"> {{ $session->session }}</a></td>
-
                     @if ($showStudent)
                         <td><a href="{{ route('profiles.show', $session->profile->id) }}"> {{ $session->profile->name }}</a>
                         </td>
                     @endif
+
+                    <td><a href="{{ route('game_sessions.show', $session->id) }}"> {{ $session->session }}</a></td>
+                    <td>  {{ $session->created_at }}</td>
+
                 </tr>
             @empty
                 <tr colspan="5">

@@ -38,41 +38,39 @@ class AppServiceProvider extends ServiceProvider
                 'text' => 'Player Profiles',
                 'url' => '/profiles',
             ]);
-
             $event->menu->add([
-                'text'    => 'GAME Experience',
+
+                'text' => 'Game Experience',
+                'url'  => '/experience',
+
+            ]);
+
+            // $event->menu->add(['header' => 'Game_settings']);
+            $event->menu->add([
+                'text'    => 'GAME Setting',
                 'icon'    => 'fas fa-fw fa-share',
                 'submenu' => [
 
                     [
-                        'text' => 'Game Experience',
-                        'url'  => '/experience',
+                        'text' => 'Knowledge Components',
+                        'url' => '/knowledgeComponents',
+                    ],
+                    [
+                        'text' => 'Scenarios',
+                        'url' => '/scenarios',
+                    ],
+                    [
+                        'text' => 'Prefabs',
+                        'url' => '/prefabs',
+                    ],
+                    [
+                        'text' => 'Start game API',
+                        'icon_color' => 'cyan',
+                        'url' => '/api/game/start',
+
                     ]
                 ]
             ]);
-            $event->menu->add(['header' => 'account_settings']);
-            $event->menu->add([
-                'text' => 'Knowledge Components',
-                'url' => '/knowledgeComponents',
-            ]);
-            $event->menu->add('SCENARIOS');
-            $event->menu->add([
-                'text' => 'Scenarios',
-                'url' => '/scenarios',
-            ]);
-            $event->menu->add([
-                'text' => 'Prefabs',
-                'url' => '/prefabs',
-            ]);
-
-
-            $event->menu->add([
-                'text' => 'Start game API',
-                'icon_color' => 'cyan',
-                'url' => '/api/game/start',
-            ]);
-
-
         });
     }
 }

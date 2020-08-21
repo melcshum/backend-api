@@ -11,7 +11,6 @@ $factory->define(Interaction::class, function (Faker $faker) {
     return [
         'name' => App\Profile::all()->random()->name,
         'type' => $type,
-        'game_session_id' => App\GameSession::all()->random()->id,
+        'game_session_id' => App\GameSession::all('id')->random()->id,
     ];
 });
-
