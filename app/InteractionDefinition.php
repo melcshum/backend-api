@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class InteractionDefinition extends Model
 {
     protected $fillable = [
-        'name'
+        'name', 'game_session_id'
     ];
 
     public function interaction_object()

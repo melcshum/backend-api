@@ -39,3 +39,5 @@ Route::get('/interactions/{id}', 'Api\InteractionsController@show');
 Route::get('/interactions', 'Api\InteractionsController@index');
 Route::post('/interactions', 'Api\InteractionsController@store');
 
+Route::get('/gamedata/session/{id}/defintion', 'Api\GameDataController@getSessionDefintionCount')->name('gamedata.sessionDefintionCount');
+Route::get('/gamedata/game/defintion', 'Api\GameDataController@getGameDefintionCount')->name('gamedata.gameDefintionCount');

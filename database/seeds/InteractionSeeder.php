@@ -52,7 +52,10 @@ class InteractionSeeder extends Seeder
                         factory(App\InteractionObject::class)->make(['name' => 'quest'])
                     )->interaction_definition()
                     ->save(
-                        factory(App\InteractionDefinition::class)->make(['name' => $cardName])
+                        factory(App\InteractionDefinition::class)->make(
+                            ['name' => $cardName,
+                            'game_session_id'=>$i->game_session_id
+                        ])
                     );
 
                 $i->interaction_result()

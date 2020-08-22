@@ -44,6 +44,12 @@ class AppServiceProvider extends ServiceProvider
                 'url'  => '/experience',
 
             ]);
+            $event->menu->add([
+
+                'text' => 'Chart',
+                'url'  => '/chart',
+
+            ]);
 
             // $event->menu->add(['header' => 'Game_settings']);
             $event->menu->add([

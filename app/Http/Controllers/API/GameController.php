@@ -11,6 +11,9 @@ use Maatwebsite\Excel\Concerns\ToArray;
 
 class GameController extends BaseController
 {
+    public function __construct()
+    {
+    }
 
 
     /**

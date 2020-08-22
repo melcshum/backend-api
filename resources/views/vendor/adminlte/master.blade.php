@@ -66,10 +66,9 @@
 </head>
 
 <body class="@yield('classes_body')" @yield('body_data')>
-    <div id="app">
+    <div >
         {{-- Body Content --}}
         @yield('body')
-
         {{-- Base Scripts --}}
         @if (!config('adminlte.enabled_laravel_mix'))
             <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
@@ -80,14 +79,19 @@
             @include('adminlte::plugins', ['type' => 'js'])
 
             <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
+
         @else
-            <script src="{{ mix(config('adminlte.laravel_mix_js_path', 'js/app.js')) }}"></script>
+
+            <script
+                src="{{ mix(config('adminlte.laravel_mix_js_path', 'js/app.js')) }}" defer></script>
+
+
         @endif
 
         {{-- Custom Scripts --}}
         @yield('adminlte_js')
     </div>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 
 </html>

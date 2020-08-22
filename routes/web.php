@@ -12,30 +12,47 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/chart', function () {
+    return view('charts.index');
+});
 
 Route::get('/test', function () {
 
+    $g= App\InteractionDefinition::all()->groupBy(
+        function ($item, $key) {
+            return $item['name'] ;
+        }
+    )->map->count();
 
+    dd($g);
+        //->join('gamesessions', 'definitions.game_session_id', '=', 'gamesessions.id')
+        //->paginate(5)
+        //      ::where('game_session_id', '=', 1)->get()->groupby(['game_session_id'])->map(
+        //         function ($item, $key) {
+        //             return collect($item)->count()
+        //      )
+        //      )->count()
+    ;
 
-    $result= App\Interaction
-    // ::with(
-    //     [
-    //         'interaction_object',
-    //         'interaction_object.interaction_definition'
-    //     ]
-    // )
-    ::with(['interaction_object.interaction_definition'])
-    ->where('game_session_id', '=', '1')
-        ->get()
-        ->groupby('definition_name')
-        // ->get()
-        // ->selectRaw('definition_name, count(*) AS aantal')
-        ;
-    $t=array();
-    foreach ($result as $key=>$value){
-        array_push($t, ['name'=>$key, 'count'=> count($value)]);
-    }
-    return $t;
+    //     $result= App\Interaction
+    //     // ::with(
+    //     //     [
+    //     //         'interaction_object',
+    //     //         'interaction_object.interaction_definition'
+    //     //     ]
+    //     // )
+    //    // ::with(['interaction_object.interaction_definition'])
+    //     ::where('game_session_id', '=', '1')
+    //         ->get()
+    //         ->groupby('definition_name')
+    //         // ->get()
+    //         // ->selectRaw('definition_name, count(*) AS aantal')
+    //         ;
+    //     $t=array();
+    //     foreach ($result as $key=>$value){
+    //         array_push($t, ['name'=>$key, 'count'=> count($value)]);
+    //     }
+    //     return $t;
     //     return App\Interaction
     //         ::with([
     //             //     //    'interaction_actor',
