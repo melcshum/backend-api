@@ -15,24 +15,46 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
 
-    return App\Interaction
-        ::with([
-             'interaction_actor',
-             'interaction_action',
-            'interaction_object',
-            'interaction_object.interaction_definition',
-            'interaction_result',
-            'interaction_result.interaction_extensions',
-            'game_session'
-        ])
-        //->where('game_session_id', '=', '1')
-       // ->where('type', '=', 'GameObject')
+
+
+    $result= App\Interaction
+    // ::with(
+    //     [
+    //         'interaction_object',
+    //         'interaction_object.interaction_definition'
+    //     ]
+    // )
+    ::with(['interaction_object.interaction_definition'])
+    ->where('game_session_id', '=', '1')
         ->get()
-      //  ->groupby('action_name')
-      ;
+        ->groupby('definition_name')
+        // ->get()
+        // ->selectRaw('definition_name, count(*) AS aantal')
+        ;
+    $t=array();
+    foreach ($result as $key=>$value){
+        array_push($t, ['name'=>$key, 'count'=> count($value)]);
+    }
+    return $t;
+    //     return App\Interaction
+    //         ::with([
+    //             //     //    'interaction_actor',
+    //             //     //    'interaction_action',
+    //             'interaction_object',
+    //             'interaction_object.interaction_definition',
+    //             //     // 'interaction_result',
+    //             //     //  'interaction_result.interaction_extensions',
+    //             //     //  'game_session'
+    //         ])
+    //  //       ->selectRaw('count(*) as total')
+    //         ->where('game_session_id', '=', '1')
+    //         // ->where('type', '=', 'GameObject')
+
+    //         ->groupby('definition_name')
+    //         ->get();
 });
 
-Route::get('/', 'GamesController@index' );
+Route::get('/', 'GamesController@index');
 
 Auth::routes();
 
