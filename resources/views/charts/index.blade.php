@@ -19,11 +19,13 @@
 
     <chart-component></chart-component>
 
+    {{-- <bar-component></bar-component> --}}
+    <bar-chart :sid="2" :chart-data="chartData"></bar-chart>
 @stop
 
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop
 
 @section('js')
