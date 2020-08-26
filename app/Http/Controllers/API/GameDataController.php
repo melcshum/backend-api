@@ -72,9 +72,27 @@ class GameDataController extends BaseController
         );
     }
 
-    public function sessiontrace($sessionid, $type)
+    public function sessionEvents($sessionid, $type)
     {
 
         dd($sessionid . ": " . $type);
+    }
+
+
+    public function difficultyTrace( )
+    {
+
+        $iDefintion = InteractionDefinition
+            ::with(['interaction_object', 'interaction_object.difficulty_settings'])->get();
+        return $iDefintion;
+    }
+
+    public function difficultyTraceByCardName( $name)
+    {
+
+        $iDefintion = InteractionDefinition
+            ::with(['interaction_object', 'interaction_object.difficulty_settings'])
+            ->where('name', 'like', '%'.$name)->get();
+        return $iDefintion;
     }
 }

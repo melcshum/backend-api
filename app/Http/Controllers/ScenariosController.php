@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Scenario;
+use App\InteractionDefinition;
 use Illuminate\Http\Request;
 
 class ScenariosController extends Controller
@@ -46,22 +47,26 @@ class ScenariosController extends Controller
      * @param  \App\Scenario  $scenario
      * @return \Illuminate\Http\Response
      */
-    public function show( $id)
+    public function show($id)
     {
         $scenario = Scenario::findOrFail($id);
-        return view("scenarios.show", compact('scenario'));
+
+       return view("scenarios.show", compact('scenario'));
     }
-   /**
+    /**
      * Display the specified resource.
      *
      * @param  \App\Scenario  $scenario
      * @return \Illuminate\Http\Response
      */
 
-    public function showByName( $name)
+    public function showByName($name)
     {
 
         $scenario = Scenario::where('name', '=', $name)->get()->first();
+//         $iDefintions = InteractionDefinition::with(['interaction_object', 'interaction_object.difficulty_settings'])->where('name', 'like', '%' . $scenario->name)->get()->all();
+//         //$iDef->interaction_object;
+// dd( $iDefintions->interaction_object());
         return view("scenarios.show", compact('scenario'));
     }
 

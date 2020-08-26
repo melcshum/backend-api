@@ -43,3 +43,7 @@ Route::get('/gamedata/session/{id}/defintion', 'Api\GameDataController@getSessio
 Route::get('/gamedata/game/defintion', 'Api\GameDataController@getGameDefintionCount')->name('gamedata.gameDefintionCount');
 Route::get('/gamedata/events/{type}/', 'Api\GameDataController@traceEvents');
 Route::get('/gamedata/session/{sessionid}/events/{type}/', 'Api\GameDataController@sessionEvents');
+
+Route::get('/gamedata/difficultyTrace', 'Api\GameDataController@difficultyTrace');
+
+Route::get('/gamedata/difficultyTrace/{name}', 'Api\GameDataController@difficultyTraceByCardName');

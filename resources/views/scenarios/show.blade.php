@@ -25,8 +25,9 @@
 
 
 
-                        <div class="mt-2"> <strong>Name</strong> {{ $scenario->name }}</div>
-                        <div class="mt-2"> Difficulty_rate {{ $scenario->difficulty_rate }}</div>
+                        <div class="mt-2"><strong>Name</strong> {{ $scenario->name }}</div>
+
+                        <div class="mt-2">Difficulty_rate {{ $scenario->difficulty_rate }}</div>
                         <div class="mt-2">Uncertainty {{ $scenario->uncertainty }}</div>
                         <div class="mt-2">K factor {{ $scenario->k_factor }}</div>
                         <div class="mt-2">Time_limit {{ $scenario->time_limit }}</div>
