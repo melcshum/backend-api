@@ -16,7 +16,7 @@ class Interaction extends Model
         'result_extensions',
         'select',
         'drag',
-        'click',
+        'attempt',
         'time_taken',
     ];
 

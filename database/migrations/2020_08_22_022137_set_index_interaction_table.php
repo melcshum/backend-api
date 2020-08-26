@@ -53,7 +53,6 @@ class SetIndexInteractionTable extends Migration
 
         Schema::table('interaction_definitions', function (Blueprint $table) {
 
-
             $table->dropIndex(['name']);
         });
 

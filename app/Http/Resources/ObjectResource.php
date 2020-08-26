@@ -15,10 +15,12 @@ class ObjectResource extends JsonResource
     public function toArray($request)
     {
         return [
-           // 'id' => $this->id,
+            // 'id' => $this->id,
             'name' => $this->name,
             'definition' => new DefinitionResource($this->interaction_definition),
+            'scenario_difficulty' => new DifficultyResource($this->scenario_difficulty),
+            'player_difficulty' => new DifficultyResource($this->player_difficulty)
         ];
-     //   return parent::toArray($request);
+        return parent::toArray($request);
     }
 }

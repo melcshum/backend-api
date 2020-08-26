@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\DifficultySetting;
 use App\GameSession;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -47,11 +48,13 @@ class InteractionsController extends BaseController
                 'interaction_action',
                 'interaction_object',
                 'interaction_object.interaction_definition',
+                'interaction_object.difficulty_settings',
                 'interaction_result',
                 'interaction_result.interaction_extensions',
                 'game_session'
             ]
-        )->paginate(100);
+        )->paginate(50);
+
         return  $this->sendResponse(
             InteractionResource::collection($interactions),
             "Interactions retrieved successfully."
@@ -95,6 +98,25 @@ class InteractionsController extends BaseController
                 'game_session_id' => $gid
             ]
         );
+        $scenario_difficulty = new DifficultySetting(
+            [
+                'rating' =>  $request->input('game_object.scenario_difficulty.rating'),
+                'play_count' =>  $request->input('game_object.scenario_difficulty.play_count'),
+                'k_factor' =>  $request->input('game_object.scenario_difficulty.k_factor'),
+                'uncertainty' =>  $request->input('game_object.scenario_difficulty.uncertainty'),
+                'type' => 'scenario_difficulty'
+            ]
+        );
+        $player_difficulty = new DifficultySetting(
+            [
+                'rating' =>  $request->input('game_object.player_difficulty.rating'),
+                'play_count' =>  $request->input('game_object.player_difficulty.play_count'),
+                'k_factor' =>  $request->input('game_object.player_difficulty.k_factor'),
+                'uncertainty' =>  $request->input('game_object.player_difficulty.uncertainty'),
+                'type' => 'player_difficulty'
+            ]
+        );
+
         $iResult = new InteractionResult(
             ['name' =>  $request->input('result.name')]
         );
@@ -118,8 +140,13 @@ class InteractionsController extends BaseController
             $interaction->save();
             $interaction->interaction_actor()->save($iActor);
             $interaction->interaction_action()->save($iAction);
-            $interaction->interaction_object()->save($iObject)
-                ->interaction_definition()->save($iDef);
+            $interaction->interaction_object()->save($iObject);
+            $iObject->interaction_definition()->save($iDef);
+            $iObject->difficulty_settings()->save($scenario_difficulty);
+            $iObject->difficulty_settings()->save($player_difficulty);
+
+            $iObject->interaction_definition()->save($iDef);
+
             $interaction->interaction_result()->save($iResult)
                 ->interaction_extensions()->saveMany($extenions);
         } catch (\Exception $e) {
