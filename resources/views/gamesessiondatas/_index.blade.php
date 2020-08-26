@@ -34,7 +34,7 @@
                 <td>Time Taken</td>
                 <td>Select </td>
                 <td>Drag </td>
-                <td>Click </td>
+                <td>Attempt </td>
 
             </tr>
         </thead>
@@ -49,7 +49,7 @@
                 <td>{{ $interaction->time_taken }} </td>
                 <td>{{ $interaction->select }}</td>
                 <td>{{ $interaction->drag }}</td>
-                <td>{{ $interaction->click }}</td>
+                <td>{{ $interaction->Attempt }}</td>
 
             </tr>
         @endforeach

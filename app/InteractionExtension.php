@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class InteractionExtension extends Model
 {
     protected $fillable = [
-        'name'
+        'name', 'value'
     ];
 
     public function interaction_result()

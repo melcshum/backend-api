@@ -24,6 +24,8 @@
                     <tr>
                         <td> User ID</td>
                         <td> User Name</td>
+
+                        <td> Email</td>
                         <td> Player Name</td>
                     </tr>
                 </thead>
@@ -33,6 +35,7 @@
 
                             <td>{{ $profile->user->id }}</td>
                             <td>{{ $profile->user->name }}</td>
+                            <td>{{ $profile->user->email }}</td>
                             <td><a href="{{ $profile->url }}"> {{ $profile->name }}</a></td>
 
                         </tr>

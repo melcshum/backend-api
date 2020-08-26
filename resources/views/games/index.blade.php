@@ -22,14 +22,17 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <td>Id</td>
                         <td>Name</td>
                         <td>Desc</td>
                         <td>Purpose</td>
+                        <td>Session</td>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($games as $game)
                         <tr>
+                            <td> {{ $game->id }}</td>
                             <td><a href="{{ $game->url }}"> {{ $game->name }}</a></td>
                             <td>{{ $game->desc }}</td>
                             <td>{{ $game->purpose }}</td>

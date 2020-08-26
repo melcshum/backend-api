@@ -17,10 +17,12 @@ class UserProfileTableSeeder extends Seeder
                 ->save(
                     factory(App\Profile::class)
                         ->make(['name' =>   Str::slug($u->name, '.')])
-                )->game_sessions()->saveMany(
-                    factory(App\GameSession::class, 10)
-                        ->make()
-                );
+                )
+                // ->game_sessions()->saveMany(
+                //     factory(App\GameSession::class, 10)
+                //         ->make()
+                // )
+                ;
         });
     }
 }

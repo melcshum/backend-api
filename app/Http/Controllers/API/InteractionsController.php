@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\API;
 
+use App\GameSession;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Interaction;
 use App\InteractionActor;
@@ -12,10 +12,12 @@ use App\InteractionObject;
 use App\InteractionDefinition;
 use App\InteractionResult;
 use App\InteractionExtension;
-
-
+use App\Game;
+use App\User;
+use App\Profile;
 use App\Http\Resources\InteractionResource;
-use Facade\FlareClient\Http\Response;
+use App\Http\Resources\GameSessionResource;
+use Illuminate\Support\Str;
 
 class InteractionsController extends BaseController
 {
@@ -26,7 +28,19 @@ class InteractionsController extends BaseController
      */
     public function index()
     {
-        //$interactions= Interaction::with(['interaction_actor','interaction_action','interaction_object', 'interaction_result', 'interaction_extensions'])->get();
+        // //$interactions= Interaction::with(['interaction_actor','interaction_action','interaction_object', 'interaction_result', 'interaction_extensions'])->get();
+        // $interactions = Interaction::with(
+        //     [
+        //         'interaction_actor',
+        //         'interaction_action',
+        //         'interaction_object',
+        //         'interaction_object.interaction_definition',
+        //         'interaction_result',
+        //         'interaction_result.interaction_extensions',
+        //         'game_session'
+        //     ]
+        // )->get();
+
         $interactions = Interaction::with(
             [
                 'interaction_actor',
@@ -37,8 +51,7 @@ class InteractionsController extends BaseController
                 'interaction_result.interaction_extensions',
                 'game_session'
             ]
-        )->get();
-
+        )->paginate(100);
         return  $this->sendResponse(
             InteractionResource::collection($interactions),
             "Interactions retrieved successfully."
@@ -54,11 +67,15 @@ class InteractionsController extends BaseController
     public function store(Request $request)
     {
 
+        $session_id =  $request->input('session_id');
+
+        $gid = GameSession::where('session', '=', $session_id)->get()->first()->only('id')['id'];
 
         $interaction = new Interaction([
             'title' => $request->input('title'),
             'type' => $request->input('type'),
             'name' => $request->input('actor.name'),
+            'game_session_id' => $gid,
         ]);
 
         $iActor = new InteractionActor(
@@ -70,22 +87,25 @@ class InteractionsController extends BaseController
         );
 
         $iObject = new InteractionObject(
-            ['name' =>  $request->input('object.name')]
+            ['name' =>  $request->input('game_object.name')]
         );
         $iDef = new InteractionDefinition(
-            ['name' =>  $request->input('object.definition.name')]
+            [
+                'name' =>  $request->input('game_object.definition.name'),
+                'game_session_id' => $gid
+            ]
         );
         $iResult = new InteractionResult(
             ['name' =>  $request->input('result.name')]
         );
 
         $extenions = array();
-        foreach ($request->input('result.extenions') as  $extenion) {
+        foreach ($request->input('result.extensions') as  $extenion) {
             array_push(
                 $extenions,
                 new InteractionExtension([
-                    'name' =>  $extenion['name'],
-                    'value' =>  $extenion['value']
+                    'name'  => $extenion['name'],
+                    'value' => $extenion['value']
                 ])
             );
         }
@@ -98,8 +118,10 @@ class InteractionsController extends BaseController
             $interaction->save();
             $interaction->interaction_actor()->save($iActor);
             $interaction->interaction_action()->save($iAction);
-            $interaction->interaction_object()->save($iObject)->interaction_definition()->save($iDef);
-            $interaction->interaction_result()->save($iResult)->interaction_extensions()->saveMany($extenions);
+            $interaction->interaction_object()->save($iObject)
+                ->interaction_definition()->save($iDef);
+            $interaction->interaction_result()->save($iResult)
+                ->interaction_extensions()->saveMany($extenions);
         } catch (\Exception $e) {
             // An error occured; cancel the transaction...
             DB::rollback();
@@ -112,41 +134,8 @@ class InteractionsController extends BaseController
         return response(['Interaction' => new InteractionResource($interaction), 'message' => 'Created successfully'], 200);
     }
 
-    public function traceEvents($type)
-    {
-
-        if (!($type === "accessible"  ||
-                $type === "alternative" ||
-                $type === "completable" ||
-                $type === "gameobject")
-        ) {
-            return   $this->sendError('event  NOT FOUND');
-        }
-
-        $interactions = Interaction::with(
-            [
-                'interaction_actor',
-                'interaction_action',
-                'interaction_object',
-                'interaction_object.interaction_definition',
-                'interaction_result',
-                'interaction_result.interaction_extensions'
-            ]
-        )->where('type', '=', $type)
-            ->get();
 
 
-        return  $this->sendResponse(
-            InteractionResource::collection($interactions),
-            "Interaction retrieved successfully."
-        );
-    }
-
-    public function sessiontrace($sessionid, $type)
-    {
-
-        dd($sessionid . ": " . $type);
-    }
 
     /**
      * Display the specified resource.

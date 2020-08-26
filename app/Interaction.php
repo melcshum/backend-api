@@ -8,7 +8,7 @@ use App\InteractionAction;
 class Interaction extends Model
 {
     protected $fillable = [
-        'title', 'type', 'name'
+        'title', 'type', 'name', 'game_session_id'
     ];
 
     protected $appends = [
@@ -83,9 +83,9 @@ class Interaction extends Model
     }
 
 
-    public function getClickAttribute()
+    public function getAttemptAttribute()
     {
-        return $this->getDefinitionValue('Click');
+        return $this->getDefinitionValue('Attempt');
     }
     // relationship
 

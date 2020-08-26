@@ -18,6 +18,7 @@ class InteractionResource extends JsonResource
 
             'title' => $this->title,
             'type'  => $this->type,
+            'session_id' => $this->session,
             'actor' => new ActorResource($this->interaction_actor),
             'verb'  => new ActionResource($this->interaction_action),
             'object' => new ObjectResource($this->interaction_object),
