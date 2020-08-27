@@ -106,6 +106,10 @@ Route::get('/prefab', 'PrefabsController@index');
 Route::resource('prefabs', 'PrefabsController');
 
 
+Route::get('/traces', 'TracesController@index')->name('traces.index');
+
+
+
 // import and export
 // to it later
 Route::get('export', 'MyController@export')->name('export');

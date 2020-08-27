@@ -44,6 +44,13 @@ class AppServiceProvider extends ServiceProvider
                 'url'  => '/experience',
 
             ]);
+
+            $event->menu->add([
+
+                'text' => 'Difficulty Trace',
+                'url'  => '/traces',
+
+            ]);
             $event->menu->add([
 
                 'text' => 'Chart',
