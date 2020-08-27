@@ -60,6 +60,7 @@ class GameSessionsController extends Controller
             'interaction_action',
             'interaction_object',
             'interaction_object.interaction_definition',
+            'interaction_object.difficulty_settings',
             'interaction_result',
             'interaction_result.interaction_extensions',
             'game_session'

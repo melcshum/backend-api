@@ -12,7 +12,7 @@ class Interaction extends Model
     ];
 
     protected $appends = [
-        'actor_name', 'action_name', 'object_name', 'definition_name', 'result_name',
+        'actor_name', 'action_name', 'object_name', 'definition_name', 'result_name', 'result_highlight',
         'result_extensions',
         'select',
         'drag',
@@ -31,6 +31,8 @@ class Interaction extends Model
         return $this->interaction_action->name;
     }
 
+
+
     public function getObjectNameAttribute()
     {
         return $this->interaction_object->name;
@@ -45,6 +47,21 @@ class Interaction extends Model
     {
         return $this->interaction_result->name;
     }
+
+    public function getResultHighlightAttribute()
+    {
+        $action = $this->interaction_action->name;
+        if ($action == 'completed') {
+            return 'bg-success';
+        } else if ($action == 'progressing') {
+            return 'bg-warning';
+        } else if ($action == 'skipped') {
+            return 'bg-danger';
+        }
+
+        return "";
+    }
+
 
 
     public function getResultExtensionsAttribute()

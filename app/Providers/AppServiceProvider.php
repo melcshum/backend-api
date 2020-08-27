@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
             ]);
             $event->menu->add([
 
-                'text' => 'Chart',
+                'text' => 'Player Data Visualization',
                 'url'  => '/chart',
 
             ]);

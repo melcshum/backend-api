@@ -25,6 +25,7 @@
 
                     @include('gamesessiondatas._index', [
                     'interactions'=>$interactions,
+                    'show_player' =>false,
                     'caption' => $game_session->profile->name
                     ])
 
@@ -42,7 +43,7 @@
 
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+
 @stop
 
 @section('js')

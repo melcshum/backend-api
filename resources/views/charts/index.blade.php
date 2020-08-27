@@ -5,7 +5,7 @@
 @section('content_header')
 
     <div class="d-flex align-items-center">
-        <h2>Player Game Session for all players </h2>
+        <h2>Game Learning Experience for all players </h2>
         <div class="ml-auto">
             {{-- <a href="{{ route('scenarios.create') }}"
                 class="btn btn-outline-secondary">Create scenario</a> --}}

@@ -26,11 +26,18 @@
         <caption> {{ $caption }} </caption>
         <thead>
             <tr>
+                @if ($show_player)
+                <td>Player</td>
+                @endif
                 <td>Action</td>
-                <td>Object</td>
-                <td>At </td>
+
                 <td>Card </td>
+                {{-- <td>Object</td> --}}
+                <td>At </td>
                 <td>Result </td>
+
+                <td>Player Rating</td>
+                <td>Scenario Rating</td>
                 <td>Time Taken</td>
                 <td>Select </td>
                 <td>Drag </td>
@@ -40,12 +47,18 @@
         </thead>
 
         @foreach ($interactions as $interaction)
-            <tr>
+            <tr class="{{ $interaction->result_highlight }}" >
+                @if ($show_player)
+                <td>{{ $interaction->actor_name }}</td>
+                @endif
                 <td>{{ $interaction->action_name }}</td>
-                <td>{{ $interaction->object_name }}</td>
-                <td>{{ $interaction->created_at }} </td>
                 <td><a href="{{ $interaction->definition_name }}">{{ $interaction->definition_name }}</a></td>
+                {{-- <td>{{ $interaction->object_name }}</td> --}}
+                <td>{{ $interaction->created_at }} </td>
                 <td>{{ $interaction->result_name }} </td>
+                <td>{{ $interaction->interaction_object->player_difficulty->rating }}  </td>
+                <td>{{ $interaction->interaction_object->scenario_difficulty->rating }}  </td>
+
                 <td>{{ $interaction->time_taken }} </td>
                 <td>{{ $interaction->select }}</td>
                 <td>{{ $interaction->drag }}</td>
