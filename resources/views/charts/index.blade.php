@@ -18,14 +18,22 @@
     <example-component></example-component>
 
     <chart-component></chart-component>
+    <chart-component2></chart-component2>
 
-    {{-- <bar-component></bar-component> --}}
-    <bar-chart :sid="2" :chart-data="chartData"></bar-chart>
+
+    <bubble-component></bubble-component>
+
+    <pie-component></pie-component>
+    <bar-component></bar-component>
+    <rader-component></rader-component>
+    {{-- <bar-chart :sid="2" :chart-data="chartData"></bar-chart>
+    --}}
 @stop
 
 
 @section('css')
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+    {{--
+    <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop
 
 @section('js')

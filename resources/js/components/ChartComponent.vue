@@ -6,8 +6,8 @@
           <div class="card-header">Chart Component</div>
 
           <div class="small">
-            <h4>Reportes del Venta Junio</h4>
-            <line-chart :chart-data="datacollection" :height="100"></line-chart>
+            <h4>Month</h4>
+            <line-chart v-if="loaded" :chart-data="datacollection" :options="options" :height="200"></line-chart>
           </div>
         </div>
       </div>
@@ -24,32 +24,42 @@ export default {
   },
   data() {
     return {
-      datacollection: null,
+      loaded: false,
+      datacollection: {},
+      options: {
+
+      },
     };
   },
-  mounted() {
-    this.fillData();
+  created() {
+    // this method is called after the instance is created
+    this.fetch(this.endpoint);
   },
   methods: {
-    fillData() {
-      this.datacollection = {
-        labels: [
-          "Lunes",
-          "Martes",
-          "Miercoles",
-          "Jueves",
-          "Viernes",
-          "Sabado",
-          "Domingo",
-        ],
-        datasets: [
-          {
-            label: "Ventas",
-            backgroundColor: "#FF0066",
-            data: [20, 40, 50, 20, 50, 40],
-          },
-        ],
-      };
+    fetch(endpoint) {
+      axios.get(endpoint).then(({ data }) => {
+        console.log(data);
+        let months = data.month;
+        let chartData = data.data;
+        let chartLabel = data.label;
+
+        this.datacollection = {
+          labels: months,
+          datasets: [
+            {
+              label: chartLabel,
+              backgroundColor: "#FF0066",
+              data: chartData,
+            },
+          ],
+        };
+        this.loaded = true;
+      });
+    },
+  },
+  computed: {
+    endpoint() {
+      return `/api/chartjs`;
     },
   },
 };
