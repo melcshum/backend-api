@@ -14,15 +14,13 @@
 @stop
 
 @section('content')
-
+{{--
     <example-component></example-component>
 
-    <chart-component></chart-component>
-    <chart-component2></chart-component2>
+    <chart-component></chart-component> --}}
 
-
+    <line-component></line-component>
     <bubble-component></bubble-component>
-
     <pie-component></pie-component>
     <bar-component></bar-component>
     <rader-component></rader-component>
