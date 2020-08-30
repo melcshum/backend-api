@@ -15,7 +15,7 @@ class DefinitionResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'name' => $this->name,
+            'name' => $this->short_name,
         ];
 
 

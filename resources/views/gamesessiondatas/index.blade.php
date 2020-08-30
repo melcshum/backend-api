@@ -28,9 +28,8 @@
             </div>
         </div>
     </div>
-    <example-component></example-component>
 
-    <chart-component></chart-component>
+
 
 @stop
 

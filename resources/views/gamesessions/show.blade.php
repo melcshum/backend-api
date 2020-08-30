@@ -6,9 +6,11 @@
 
     <div class="d-flex align-items-center">
 
-        <h3> Player Session <span class="text-muted"> (  {{ $game_session->session }} ) </span>at {{ $game_session->created_at }}</h3>
+        <h3> Player Session <span class="text-muted"> ( {{ $game_session->session }} ) </span>at
+            {{ $game_session->created_at }}</h3>
         <div class="ml-auto align-items-right">
-            <a href="{{ route("profiles.show", $game_session->profile->id )  }}" class="btn btn-outline-secondary">Back to Player</a>
+            <a href="{{ route('profiles.show', $game_session->profile->id) }}" class="btn btn-outline-secondary">Back to
+                Player</a>
         </div>
     </div>
 
@@ -35,9 +37,15 @@
                 <div>
                     {{ $interactions->links() }}
                 </div>
+
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <game-object-history-count :sid="{{ $game_session->id }}"></game-object-history-count>
+    </div>
+
 @stop
 
 

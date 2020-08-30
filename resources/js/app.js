@@ -23,6 +23,8 @@ Vue.component('pie-component', require('./components/PieChartComponent.vue').def
 Vue.component('rader-component', require('./components/RaderChartComponent.vue').default);
 
 
+Vue.component('game-object-history-count', require('./components/GameObjectHistoryCountComponent.vue').default);
+
 // Vue.component('bar-chart', require('./components/BarChart.vue').default);
 
 

@@ -12,17 +12,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/chart', function () {
     return view('charts.index');
 });
 
 Route::get('/test', function () {
 
-    $g= App\InteractionDefinition::all()->groupBy(
-        function ($item, $key) {
-            return $item['name'] ;
-        }
-    )->map->count();
+    $g = App\InteractionDefinition::all()
+        ->groupBy(
+            function ($item, $key) {
+                return $item['short_name'];
+            }
+        )->map->count();
 
     dd($g);
         //->join('gamesessions', 'definitions.game_session_id', '=', 'gamesessions.id')

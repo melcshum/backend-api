@@ -1,10 +1,15 @@
 <template>
   <div class="card">
-    <div class="card-header">Bar</div>
+    <div class="card-header">
+      <strong>Card Count per session
+           <!-- ({{ sid }}) -->
+
+      </strong>
+    </div>
     <div class="card-body">
-      <div class="small">
-        <bar-chart v-if="loaded" :chart-data="datacollection" :options="options" :height="200"></bar-chart>
-      </div>
+      <!-- <div class="small"> -->
+        <bar-chart v-if="loaded" :chart-data="datacollection" :options="options" ></bar-chart>
+      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -16,6 +21,7 @@ export default {
   components: {
     BarChart,
   },
+  props: ["sid"],
   data() {
     return {
       loaded: false,
@@ -55,57 +61,36 @@ export default {
   methods: {
     fetch(endpoint) {
       axios.get(endpoint).then(({ data }) => {
-        console.log(data);
-        let months = data.month;
-        let chartData = data.data;
-        let chartLabel = data.label;
+        let chartLabels = [];
+        let chartData = [];
+        let chartLabel = "Card Count ";
 
-        // this.datacollection = {
-        //   labels: months,
-        //   datasets: [
-        //     {
-        //       label: chartLabel,
-        //       backgroundColor: "#FF0066",
-        //       data: chartData,
-        //     },
-        //   ],
-        // };
+        Object.keys(data).forEach(function (k, v) {
+          chartLabels.push(k);
+          chartData.push(data[k]);
+        });
 
         this.datacollection = {
-          //Data to be represented on x-axis
-          labels: [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-          ],
+          labels: chartLabels,
           datasets: [
             {
-              label: "Expern",
-              backgroundColor: "#f87979",
+              label: chartLabel,
+              backgroundColor: "#FF0066",
               pointBackgroundColor: "white",
               borderWidth: 1,
               pointBorderColor: "#249EBF",
-              //Data to be represented on y-axis
-              data: [40, 20, 30, 50, 90, 10, 20, 40, 50, 70, 90, 100],
+              data: chartData,
             },
           ],
         };
+
         this.loaded = true;
       });
     },
   },
   computed: {
     endpoint() {
-      return `/api/chartjs`;
+      return `http://localhost/api/gamedata/session/${this.sid}/defintion`;
     },
   },
 };

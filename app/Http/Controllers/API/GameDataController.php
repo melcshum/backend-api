@@ -34,12 +34,19 @@ class GameDataController extends BaseController
         // }
         // return $data;
 
-        return InteractionDefinition::where('game_session_id', '=', $sid)->get()->groupby('name', true)->map->count();
+        return InteractionDefinition::where('game_session_id', '=', $sid)->get()->groupby('short_name', true)->map->count();
     }
 
     public function getGameDefintionCount()
     {
-        return InteractionDefinition::get()->groupby('name')->map->count();
+
+        return InteractionDefinition::all()
+        ->groupBy(
+            function ($item, $key) {
+                return $item['short_name'];
+            }
+        )->map->count();
+        //return InteractionDefinition::get()->groupby('name')->map->count();
     }
 
 
