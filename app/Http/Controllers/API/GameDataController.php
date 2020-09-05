@@ -53,7 +53,7 @@ class GameDataController extends BaseController
     {
 
         $iObject = InteractionObject
-            ::where('game_session_id', '=', 2)->get()->all();
+            ::where('game_session_id', '=', $sid)->get()->all();
         return $iObject;
         //return InteractionDefinition::get()->groupby('name')->map->count();
     }

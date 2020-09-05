@@ -64,7 +64,7 @@ export default {
         let playerLabel = "player ";
         let sccenarioData = [];
         let sccenarioLabel = "Sccenario  ";
-
+console.log(data);
         Object.keys(data).forEach(function (k, v) {
           chartLabels.push(k);
           playerData.push(data[k].player_difficulty_rating);
@@ -99,6 +99,8 @@ export default {
   },
   computed: {
     endpoint() {
+
+     console.log(`/api/gamedata/session/${this.sid}/difficultyTrace`)   ;
      return `/api/gamedata/session/${this.sid}/difficultyTrace`;
     },
   },
