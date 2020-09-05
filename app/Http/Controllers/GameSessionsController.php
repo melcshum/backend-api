@@ -50,6 +50,7 @@ class GameSessionsController extends Controller
     public function show(GameSession $game_session)
     {
         $interactions =  $this->getInteractions($game_session->id);
+
         return view('gamesessions.show', compact('game_session', 'interactions'));
     }
 

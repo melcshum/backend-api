@@ -24,4 +24,5 @@ class GameSession extends Model
     {
         return $this->hasMany(App\Interaction::class);
     }
+
 }

@@ -90,7 +90,10 @@ class InteractionsController extends BaseController
         );
 
         $iObject = new InteractionObject(
-            ['name' =>  $request->input('game_object.name')]
+            [
+                'name' =>  $request->input('game_object.name'),
+                'game_session_id' => $gid
+            ]
         );
         $iDef = new InteractionDefinition(
             [

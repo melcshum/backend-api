@@ -23,9 +23,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(KnowledgeComponentsTableSeeder::class);
 
-
         $this->call(UserProfileTableSeeder::class);
-    //    $this->call(InteractionSeeder::class);
+        $this->call(InteractionSeeder::class);
 
 
     }

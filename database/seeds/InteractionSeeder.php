@@ -15,8 +15,8 @@ class InteractionSeeder extends Seeder
 
 
         $sessions = App\GameSession::with('profile')->get()->all();
-        foreach ($sessions as $session) {
 
+        foreach ($sessions as $session) {
             factory(Interaction::class, 100)->create([
                 'name' => $session->profile->name,
                 'type' => collect(['Accessible', 'Alternative', 'Completable', 'GameObject'])->random(),
@@ -49,13 +49,18 @@ class InteractionSeeder extends Seeder
 
                 $i->interaction_object()
                     ->save(
-                        factory(App\InteractionObject::class)->make(['name' => 'quest'])
+                        factory(App\InteractionObject::class)->make([
+                            'name' => 'quest',
+                            'game_session_id' => $i->game_session_id
+                        ])
                     )->interaction_definition()
                     ->save(
                         factory(App\InteractionDefinition::class)->make(
-                            ['name' => $cardName,
-                            'game_session_id'=>$i->game_session_id
-                        ])
+                            [
+                                'name' => $cardName,
+                                'game_session_id' => $i->game_session_id
+                            ]
+                        )
                     );
 
                 $i->interaction_result()
@@ -65,18 +70,18 @@ class InteractionSeeder extends Seeder
                     ->saveMany(
                         [
                             factory(App\InteractionExtension::class)->make([
-                                'name' => 'Select', 'value' => rand ( 1, 100)
+                                'name' => 'Select', 'value' => rand(1, 100)
                             ]),
 
                             factory(App\InteractionExtension::class)->make([
-                                'name' => 'Drag', 'value' => rand ( 1, 100)
+                                'name' => 'Drag', 'value' => rand(1, 100)
                             ]),
 
                             factory(App\InteractionExtension::class)->make([
-                                'name' => 'Click', 'value' => rand ( 1, 100)
+                                'name' => 'Click', 'value' => rand(1, 100)
                             ]),
                             factory(App\InteractionExtension::class)->make([
-                                'name' => 'TimeTaken', 'value' => rand ( 1, 10000000)
+                                'name' => 'TimeTaken', 'value' => rand(1, 10000000)
                             ])
                         ]
                     );

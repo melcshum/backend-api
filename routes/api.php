@@ -40,7 +40,13 @@ Route::post('/protocols/newSession', 'Api\GameProtocolsController@newSession');
 Route::get('/protocols/start', 'Api\GameProtocolsController@start');
 
 Route::get('/gamedata/session/{id}/defintion', 'Api\GameDataController@getSessionDefintionCount')->name('gamedata.sessionDefintionCount');
+Route::get('/gamedata/session/{id}/difficultyTrace', 'Api\GameDataController@getDifficultyTrace')->name('gamedata.difficultyTrace');
+
+
 Route::get('/gamedata/game/defintion', 'Api\GameDataController@getGameDefintionCount')->name('gamedata.gameDefintionCount');
+
+
+
 Route::get('/gamedata/events/{type}/', 'Api\GameDataController@traceEvents');
 Route::get('/gamedata/session/{sessionid}/events/{type}/', 'Api\GameDataController@sessionEvents');
 

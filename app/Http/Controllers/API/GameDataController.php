@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Interaction;
 // use App\InteractionActor;
 // use App\InteractionAction;
-// use App\InteractionObject;
+use App\InteractionObject;
 use App\InteractionDefinition;
 // use App\InteractionResult;
 // use App\InteractionExtension;
@@ -41,14 +41,22 @@ class GameDataController extends BaseController
     {
 
         return InteractionDefinition::all()
-        ->groupBy(
-            function ($item, $key) {
-                return $item['short_name'];
-            }
-        )->map->count();
+            ->groupBy(
+                function ($item, $key) {
+                    return $item['short_name'];
+                }
+            )->map->count();
         //return InteractionDefinition::get()->groupby('name')->map->count();
     }
 
+    public function getDifficultyTrace($sid)
+    {
+
+        $iObject = InteractionObject
+            ::where('game_session_id', '=', 2)->get()->all();
+        return $iObject;
+        //return InteractionDefinition::get()->groupby('name')->map->count();
+    }
 
     public function traceEvents($type)
     {
@@ -86,7 +94,7 @@ class GameDataController extends BaseController
     }
 
 
-    public function difficultyTrace( )
+    public function difficultyTrace()
     {
 
         $iDefintion = InteractionDefinition
@@ -94,12 +102,12 @@ class GameDataController extends BaseController
         return $iDefintion;
     }
 
-    public function difficultyTraceByCardName( $name)
+    public function difficultyTraceByCardName($name)
     {
 
         $iDefintion = InteractionDefinition
             ::with(['interaction_object', 'interaction_object.difficulty_settings'])
-            ->where('name', 'like', '%'.$name)->get();
+            ->where('name', 'like', '%' . $name)->get();
         return $iDefintion;
     }
 }

@@ -56,8 +56,8 @@
                 {{-- <td>{{ $interaction->object_name }}</td> --}}
                 <td>{{ $interaction->created_at }} </td>
                 <td>{{ $interaction->result_name }} </td>
-                <td>{{ $interaction->interaction_object->player_difficulty->rating }}  </td>
-                <td>{{ $interaction->interaction_object->scenario_difficulty->rating }}  </td>
+                <td>{{ $interaction->interaction_object->player_difficulty_rating }}  </td>
+                <td>{{ $interaction->interaction_object->scenario_difficulty_rating }}  </td>
 
                 <td>{{ $interaction->time_taken }} </td>
                 <td>{{ $interaction->select }}</td>

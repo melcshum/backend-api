@@ -7,16 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class InteractionObject extends Model
 {
     protected $fillable = [
-        'name'
+        'name', 'game_session_id'
     ];
 
     protected $appends = [
-        'player_difficulty', 'scenario_difficulty'
+        'scenario_name', 'player_difficulty_rating', 'scenario_difficulty_rating'
     ];
 
     public function interaction()
     {
         return $this->belongsTo(Interaction::class);
+    }
+
+    public function game_session()
+    {
+        return $this->belongsTo(GameSession::class);
     }
 
     public function interaction_definition()
@@ -40,15 +45,20 @@ class InteractionObject extends Model
         return null;
     }
 
-    public function getScenarioDifficultyAttribute()
+    public function getScenarioDifficultyRatingAttribute()
     {
-        return $this->getDifficultySetting('scenario_difficulty');
+        return $this->getDifficultySetting('scenario_difficulty')->rating;
     }
 
 
 
-    public function getPlayerDifficultyAttribute()
+    public function getPlayerDifficultyRatingAttribute()
     {
-        return $this->getDifficultySetting('player_difficulty');
+        return $this->getDifficultySetting('player_difficulty')->rating;
+    }
+
+    public function getScenarioNameAttribute()
+    {
+        return $this->interaction_definition->short_name;
     }
 }
