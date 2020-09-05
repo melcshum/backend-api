@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Collection;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,48 @@ Route::get('/chart', function () {
 
 Route::get('/test', function () {
 
-    $g = null;
-    $g = App\InteractionObject
-    ::where('game_session_id', '=', 2)->get()->
-    all();
+    // $data = new Collection([
+    //     10 => ['user' => 1, 'skill' => 1, 'roles' => ['Role_1', 'Role_3']],
+    //     20 => ['user' => 2, 'skill' => 1, 'roles' => ['Role_1', 'Role_2']],
+    //     30 => ['user' => 3, 'skill' => 2, 'roles' => ['Role_1']],
+    //     40 => ['user' => 4, 'skill' => 2, 'roles' => ['Role_2']],
+    // ]);
+
+    // $result = $data->groupBy([
+    //     'skill',
+    //     function ($item) {
+    //         return $item['roles'];
+    //     },
+    // ], $preserveKeys = true);
+    $result = App\Interaction::
+        where('game_session_id', '=', '3')->get()->
+        mapToGroups(function ($item, $key) {
+            return [$item['short_name'] => $item['time_taken']];
+        });
+$data=[];
+        foreach ($result as $key => $value){
+           array_push($data,[ $key => $result->get($key)->avg()]);
+         //   echo     $key. " => ";
+     //    echo  $result->get($key)->avg()  ."<br>";
+
+     //    echo   $result->get( $key). "<br>";
+        }
+        return $data[0];
+        //         ->groupby(
+        //             'definition_name'
+        //              ,
+        //         //    function ($item) {
+        //         //        return $item['result_name'];
+        //         //    },
+        //             $preserveKeys = true
+        //         )
+    ;
+
+
+    //     ;
+
+    //$g=$g::p('time_taken','definition_name')->get();
+
 
     //     ->groupBy(
     //         function ($item, $key) {
@@ -30,7 +69,7 @@ Route::get('/test', function () {
     //         }
     //     )->map->count();
 
-    return ($g);
+  //  return ($result);
 });
 
 Route::get('/', 'GamesController@index');

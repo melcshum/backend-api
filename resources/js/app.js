@@ -23,6 +23,8 @@ Vue.component('pie-component', require('./components/basic/PieChartComponent.vue
 Vue.component('rader-component', require('./components/basic/RaderChartComponent.vue').default);
 
 
+
+Vue.component('scenario-average', require('./components/ghostcoder/ScenarioAverageComponent.vue').default);
 Vue.component('game-object-history-count', require('./components/ghostcoder/GameObjectHistoryCountComponent.vue').default);
 Vue.component('session-difficulty', require('./components/ghostcoder/SessionDifficultyComponent.vue').default);
 

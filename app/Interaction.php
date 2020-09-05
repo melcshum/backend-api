@@ -12,7 +12,7 @@ class Interaction extends Model
     ];
 
     protected $appends = [
-        'actor_name', 'action_name', 'object_name', 'definition_name', 'result_name', 'result_highlight',
+        'actor_name', 'action_name', 'object_name', 'definition_name', 'short_name', 'result_name', 'result_highlight',
         'result_extensions',
         'select',
         'drag',
@@ -42,6 +42,12 @@ class Interaction extends Model
     {
         return $this->interaction_object->interaction_definition->name;
     }
+
+    public function getShortNameAttribute()
+    {
+        return $this->interaction_object->interaction_definition->short_name;
+    }
+
 
     public function getResultNameAttribute()
     {

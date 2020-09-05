@@ -47,6 +47,10 @@
         <game-object-history-count :sid="{{ $game_session->id }}"> </game-object-history-count>
 
         <session-difficulty :sid="{{ $game_session->id }}" ></session-difficulty>
+
+        <scenario-average :sid="{{ $game_session->id }}" ></scenario-average>
+
+
     </div>
 @stop
 

@@ -58,6 +58,22 @@ class GameDataController extends BaseController
         //return InteractionDefinition::get()->groupby('name')->map->count();
     }
 
+
+    public function getAverageTime($sid)
+    {
+        $result = Interaction::where('game_session_id', '=', $sid)->get()->mapToGroups(function ($item, $key) {
+            return [$item['short_name'] => $item['time_taken']];
+        });
+        $data = [];
+        foreach ($result as $key => $value) {
+            array_push($data, [$key => $result->get($key)->avg()]);
+        }
+        return json_encode ($data);
+
+        //  return InteractionDefinition::where('game_session_id', '=', $sid)->get()->groupby('short_name', true)->map->count();
+    }
+
+
     public function traceEvents($type)
     {
 

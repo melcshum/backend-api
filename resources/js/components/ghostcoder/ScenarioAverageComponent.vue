@@ -2,7 +2,7 @@
   <div class="card m-2">
     <div class="card-header">
       <strong>
-        Card Count per session
+        Average Time Per Scenarios
         <!-- ({{ sid }}) -->
       </strong>
     </div>
@@ -63,12 +63,16 @@ export default {
       axios.get(endpoint).then(({ data }) => {
         let chartLabels = [];
         let chartData = [];
-        let chartLabel = "Card Count ";
+        let chartLabel = "Average Time Spend ";
 
-        Object.keys(data).forEach(function (k, v) {
-          chartLabels.push(k);
-          chartData.push(data[k]);
+        data.forEach(function (d) {
+          console.log(d);
+          Object.keys(d).forEach(function (k, v) {
+            chartLabels.push(k);
+            chartData.push(d[k]);
+          });
         });
+
 
         this.datacollection = {
           labels: chartLabels,
@@ -90,7 +94,8 @@ export default {
   },
   computed: {
     endpoint() {
-      return `/api/gamedata/session/${this.sid}/defintion`;
+      console.log(`/api/gamedata/session/${this.sid}/average`);
+      return `/api/gamedata/session/${this.sid}/average`;
     },
   },
 };
