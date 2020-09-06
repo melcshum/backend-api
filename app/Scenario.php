@@ -15,6 +15,7 @@ class Scenario extends Model
         'uncertainty',
         'k_factor',
         'time_limit',
+        'time_taken',
     ];
 
     public function game()

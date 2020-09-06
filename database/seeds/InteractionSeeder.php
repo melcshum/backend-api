@@ -45,8 +45,6 @@ class InteractionSeeder extends Seeder
 
                 $cardName = "http://localhost/scenarios/name/" . App\Scenario::all('name')->random()->name;
 
-
-
                 $i->interaction_object()
                     ->save(
                         factory(App\InteractionObject::class)->make([

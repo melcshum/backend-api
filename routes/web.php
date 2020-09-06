@@ -20,55 +20,90 @@ Route::get('/chart', function () {
 
 Route::get('/test', function () {
 
-    // $data = new Collection([
-    //     10 => ['user' => 1, 'skill' => 1, 'roles' => ['Role_1', 'Role_3']],
-    //     20 => ['user' => 2, 'skill' => 1, 'roles' => ['Role_1', 'Role_2']],
-    //     30 => ['user' => 3, 'skill' => 2, 'roles' => ['Role_1']],
-    //     40 => ['user' => 4, 'skill' => 2, 'roles' => ['Role_2']],
-    // ]);
 
-    // $result = $data->groupBy([
-    //     'skill',
-    //     function ($item) {
-    //         return $item['roles'];
-    //     },
-    // ], $preserveKeys = true);
-    $result = App\Interaction::
-        where('game_session_id', '=', '3')->get()->
-        mapToGroups(function ($item, $key) {
-            return [$item['short_name'] => $item['time_taken']];
-        });
-$data=[];
-        foreach ($result as $key => $value){
-           array_push($data,[ $key => $result->get($key)->avg()]);
-         //   echo     $key. " => ";
-     //    echo  $result->get($key)->avg()  ."<br>";
 
-     //    echo   $result->get( $key). "<br>";
-        }
-        //         ->groupby(
-        //             'definition_name'
-        //              ,
-        //         //    function ($item) {
-        //         //        return $item['result_name'];
-        //         //    },
-        //             $preserveKeys = true
-        //         )
-    ;
+    // $time_limits = App\Scenario::all()->mapToGroups(function ($item, $key) {
+    //     return [
+    //         $item['name'] => $item['time_limit']
+    //     ];
+    // });
+
+
+    // $data = App\Interaction::all()->where('result_name', '=', 'completed')->mapToGroups(function ($item, $key) {
+    //     return [$item['short_name'] => $item['time_taken']];
+    // });
+
+    // $result = collect([]);
+    // foreach ($time_limits as $key => $value) {
+    //     //  if ($time_limits->contains($key)) {
+    //     $time_taken =  $data->get($key);
+    //     if ($time_taken != null) {
+
+    //         $result->push(
+    //             collect(["name" =>  $key, "time_limit" => $value])
+    //                 ->merge(['time_taken' => $time_taken])
+    //         );
+    //     } else {
+    //         $result->push(
+    //             collect(["name" =>  $key, "time_limit" => $value])
+    //         );
+    //     }
+    //     //  }
+    // }
+
+    // return $result;
+
+    // $result = App\Interaction::where('game_session_id', '=', '3')->get()
+    //     ->where('result_name', '=', 'completed')
+    //     ->mapToGroups(function ($item, $key) {
+    //         return [
+    //             $item['short_name'] => $item['select']  + $item['drag'],
+    //         ];
+    //     });
+
+    // $data = Collect();
+
+    // foreach ($result as $key => $value) {
+    //     $data->push(
+    //         [ $key => [
+    //             ["max" => $result->get($key)->max()],
+    //             ["median" => $result->get($key)->median()],
+    //             ["min" => $result->get($key)->min()],
+    //             ["average" => $result->get($key)->avg()]
+    //         ]]
+    //     );
+    //   echo     $key. " => ";
+    //    echo  $result->get($key)->avg()  ."<br>";
+
+    //    echo   $result->get( $key). "<br>";
+    // }
+    //  return $data;
+    //     //     $result = App\Interaction::
+    //         where('game_session_id', '=', '3')->get()->
+    //         mapToGroups(function ($item, $key) {
+    //             return [$item['short_name'] => $item['time_taken']];
+    //         });
+    //      $data=Collect([]);
+    //         foreach ($result as $key => $value){
+    //            array_push($data,[ $key => $result->get($key)->avg()]);
+    //   echo     $key. " => ";
+    //    echo  $result->get($key)->avg()  ."<br>";
+
+    //    echo   $result->get( $key). "<br>";
+    //   }
+    //         ->groupby(
+    //             'definition_name'
+    //              ,
+    //         //    function ($item) {
+    //         //        return $item['result_name'];
+    //         //    },
+    //             $preserveKeys = true
+    //         )
+    // ;
 
 
     //     ;
 
-    //$g=$g::p('time_taken','definition_name')->get();
-
-
-    //     ->groupBy(
-    //         function ($item, $key) {
-    //             return $item['short_name'];
-    //         }
-    //     )->map->count();
-
-  //  return ($result);
 });
 
 Route::get('/', 'GamesController@index');
@@ -79,8 +114,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
 
 
-// for showing to teacher / student
+// for statistic to teacher / student
 Route::get('/experience', 'ExperienceController@index');
+Route::get('/timestatistic', 'ExperienceController@timestatistic');
 
 
 Route::get('/games', 'GamesController@index')->name('games.index');

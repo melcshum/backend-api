@@ -31,7 +31,7 @@
 
         <div class="card">
             <div class="card-body">
-                @include('gamesessions._index', [
+                @include('playerdata._index', [
                 'game_sessions'=>$game_sessions,
                 'showGame'=>false,
                 'showStudent'=>true,

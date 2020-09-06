@@ -39,10 +39,19 @@ class AppServiceProvider extends ServiceProvider
                 'url' => '/profiles',
             ]);
             $event->menu->add([
+                'text'    => 'GAME Statistic and Analytics',
+                'icon'    => 'fas fa-fw fa-share',
+                'submenu' => [
 
-                'text' => 'Game Experience',
-                'url'  => '/experience',
-
+                    [
+                        'text' => 'Game Raw Data',
+                        'url'  => '/experience',
+                    ],
+                    [
+                        'text' => 'Default Time vs Average Play Time',
+                        'url'  => '/timestatistic',
+                    ]
+                ]
             ]);
 
             $event->menu->add([

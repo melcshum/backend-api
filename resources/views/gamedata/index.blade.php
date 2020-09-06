@@ -17,7 +17,7 @@
     <div class="card">
 
         <div class="card-body">
-            @include('gamesessiondatas._index', [
+            @include('gamedata._index', [
             'interactions'=>$interactions,
             'show_player' =>true,
             'caption'=> 'All players'

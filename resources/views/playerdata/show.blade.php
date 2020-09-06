@@ -25,7 +25,7 @@
             <div class="card-body">
                 <div>
 
-                    @include('gamesessiondatas._index', [
+                    @include('gamedata._index', [
                     'interactions'=>$interactions,
                     'show_player' =>false,
                     'caption' => $game_session->profile->name

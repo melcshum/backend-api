@@ -48,11 +48,11 @@
 
                             </td>
                             <td>
-                                {{ $iDefinition->interaction_object->scenario_difficulty->rating }}
+                                {{ $iDefinition->interaction_object->scenario_difficulty_rating }}
                             </td>
 
                             <td>
-                                {{ $iDefinition->interaction_object->player_difficulty->rating }}
+                                {{ $iDefinition->interaction_object->player_difficulty_rating }}
                             </td>
                             {{-- <td>
                                 {{ $iDefinition->interaction_object->player_difficulty }}

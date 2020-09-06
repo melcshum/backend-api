@@ -51,7 +51,7 @@ class GameSessionsController extends Controller
     {
         $interactions =  $this->getInteractions($game_session->id);
 
-        return view('gamesessions.show', compact('game_session', 'interactions'));
+        return view('playerdata.show', compact('game_session', 'interactions'));
     }
 
     public function getInteractions($interaction_id)
