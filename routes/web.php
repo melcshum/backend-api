@@ -46,7 +46,6 @@ $data=[];
 
      //    echo   $result->get( $key). "<br>";
         }
-        return $data[0];
         //         ->groupby(
         //             'definition_name'
         //              ,

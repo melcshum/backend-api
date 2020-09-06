@@ -39,12 +39,13 @@ Route::post('/interactions', 'Api\InteractionsController@store');
 Route::post('/protocols/newSession', 'Api\GameProtocolsController@newSession');
 Route::get('/protocols/start', 'Api\GameProtocolsController@start');
 
-Route::get('/gamedata/session/{id}/defintion', 'Api\GameDataController@getSessionDefintionCount')->name('gamedata.sessionDefintionCount');
-Route::get('/gamedata/session/{id}/difficultyTrace', 'Api\GameDataController@getDifficultyTrace')->name('gamedata.difficultyTrace');
-Route::get('/gamedata/session/{id}/average', 'Api\GameDataController@getAverageTime')->name('gamedata.averageTime');
+Route::get('/playerdata/session/{id}/defintionCount', 'Api\PlayerDataController@getSessionDefintionCount')->name('playerdata.sessionDefintionCount');
+Route::get('/playerdata/session/{id}/difficultyTrace', 'Api\PlayerDataController@getDifficultyTrace')->name('playerdata.difficultyTrace');
+Route::get('/playerdata/session/{id}/average', 'Api\PlayerDataController@getAverageTime')->name('playerdata.averageTime');
 
 
-Route::get('/gamedata/game/defintion', 'Api\GameDataController@getGameDefintionCount')->name('gamedata.gameDefintionCount');
+Route::get('/gamedata/game/defintionCount', 'Api\GameDataController@getGameDefintionCount')->name('gamedata.gameDefintionCount');
+Route::get('/gamedata/game/average', 'Api\GameDataController@getAverageTime')->name('gamedata.averageTime');
 
 
 

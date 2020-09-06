@@ -44,11 +44,16 @@
 
     <div class="row">
 
-        <game-object-history-count :sid="{{ $game_session->id }}"> </game-object-history-count>
+        <game-object-history-count title="{{ 'Card Per Session' }}" :sid="{{ $game_session->id }}"
+            url="{{ '/api/playerdata/session/' . $game_session->id . '/defintionCount' }}">
+        </game-object-history-count>
 
-        <session-difficulty :sid="{{ $game_session->id }}" ></session-difficulty>
+        <session-difficulty :sid="{{ $game_session->id }}"
+            url="{{ '/api/playerdata/session/' . $game_session->id . '/difficultyTrace' }}"
+            ></session-difficulty>
 
-        <scenario-average :sid="{{ $game_session->id }}" ></scenario-average>
+        <scenario-average :sid="{{ $game_session->id }}" title="{{ 'Average Time Per Scenarios for a PLayer' }}"
+            url="{{ '/api/playerdata/session/' . $game_session->id . '/average' }}"></scenario-average>
 
 
     </div>

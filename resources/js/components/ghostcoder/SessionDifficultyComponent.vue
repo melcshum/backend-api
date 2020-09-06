@@ -1,7 +1,6 @@
 <template>
   <div class="card m-2">
     <div class="card-header">
-
       <h4>Player Vs Scenario</h4>
     </div>
 
@@ -18,7 +17,8 @@ export default {
   components: {
     LineChart,
   },
-  props: ['sid'],
+
+  props: ["sid", "url"],
   data() {
     return {
       loaded: false,
@@ -58,7 +58,6 @@ export default {
   methods: {
     fetch(endpoint) {
       axios.get(endpoint).then(({ data }) => {
-
         let chartLabels = [];
         let playerData = [];
         let playerLabel = "player ";
@@ -70,7 +69,6 @@ export default {
           playerData.push(data[k].player_difficulty_rating);
           sccenarioData.push(data[k].scenario_difficulty_rating);
         });
-
 
         this.datacollection = {
           labels: chartLabels,
@@ -99,8 +97,9 @@ export default {
   },
   computed: {
     endpoint() {
+      // return `/api/playerdata/session/${this.sid}/difficultyTrace`;
 
-     return `/api/gamedata/session/${this.sid}/difficultyTrace`;
+      return `${this.url}`;
     },
   },
 };

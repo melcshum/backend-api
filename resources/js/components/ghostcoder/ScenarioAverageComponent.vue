@@ -1,10 +1,7 @@
 <template>
   <div class="card m-2">
     <div class="card-header">
-      <strong>
-        Average Time Per Scenarios
-        <!-- ({{ sid }}) -->
-      </strong>
+      <strong>{{ title }}</strong>
     </div>
     <div class="card-body">
       <!-- <div class="small"> -->
@@ -21,7 +18,7 @@ export default {
   components: {
     BarChart,
   },
-  props: ["sid"],
+  props: ["sid", "title", "url"],
   data() {
     return {
       loaded: false,
@@ -66,13 +63,11 @@ export default {
         let chartLabel = "Average Time Spend ";
 
         data.forEach(function (d) {
-          console.log(d);
           Object.keys(d).forEach(function (k, v) {
             chartLabels.push(k);
             chartData.push(d[k]);
           });
         });
-
 
         this.datacollection = {
           labels: chartLabels,
@@ -94,8 +89,7 @@ export default {
   },
   computed: {
     endpoint() {
-      console.log(`/api/gamedata/session/${this.sid}/average`);
-      return `/api/gamedata/session/${this.sid}/average`;
+      return `${this.url}`;
     },
   },
 };

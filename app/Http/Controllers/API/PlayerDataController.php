@@ -20,35 +20,37 @@ use App\Http\Resources\GameSessionResource;
 use Illuminate\Support\Str;
 
 
-class GameDataController extends BaseController
+class PlayerDataController extends BaseController
 {
+    public function getSessionDefintionCount($sid)
+    {
+        // $result = Interaction
+        //     ::where('game_session_id', '=', $sid)
+        //     ->get()
+        //     ->groupby('definition_name');
+        // $data = array();
+        // foreach ($result as $key => $value) {
+        //     array_push($data, ['name' => $key, 'count' => count($value)]);
+        // }
+        // return $data;
+
+        return InteractionDefinition::where('game_session_id', '=', $sid)->get()->groupby('short_name', true)->map->count();
+    }
 
 
-    public function getGameDefintionCount()
+    public function getDifficultyTrace($sid)
     {
 
-        return InteractionDefinition::all()
-            ->groupBy(
-                function ($item, $key) {
-                    return $item['short_name'];
-                }
-            )->map->count();
+        $iObject = InteractionObject
+            ::where('game_session_id', '=', $sid)->get()->all();
+        return $iObject;
         //return InteractionDefinition::get()->groupby('name')->map->count();
     }
 
-    // public function getDifficultyTrace($sid)
-    // {
 
-    //     $iObject = InteractionObject
-    //         ::where('game_session_id', '=', $sid)->get()->all();
-    //     return $iObject;
-    //     //return InteractionDefinition::get()->groupby('name')->map->count();
-    // }
-
-
-    public function getAverageTime()
+    public function getAverageTime($sid)
     {
-        $result = Interaction::all()->mapToGroups(function ($item, $key) {
+        $result = Interaction::where('game_session_id', '=', $sid)->get()->mapToGroups(function ($item, $key) {
             return [$item['short_name'] => $item['time_taken']];
         });
         $data = [];

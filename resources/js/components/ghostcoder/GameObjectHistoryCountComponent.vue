@@ -1,15 +1,10 @@
 <template>
   <div class="card m-2">
     <div class="card-header">
-      <strong>
-        Card Count per session
-        <!-- ({{ sid }}) -->
-      </strong>
+      <strong>{{ title }}</strong>
     </div>
     <div class="card-body">
-      <!-- <div class="small"> -->
       <bar-chart v-if="loaded" :chart-data="datacollection" :options="options"></bar-chart>
-      <!-- </div> -->
     </div>
   </div>
 </template>
@@ -21,7 +16,7 @@ export default {
   components: {
     BarChart,
   },
-  props: ["sid"],
+   props: ["sid", "title", "url"],
   data() {
     return {
       loaded: false,
@@ -64,8 +59,9 @@ export default {
         let chartLabels = [];
         let chartData = [];
         let chartLabel = "Card Count ";
-
+      console.log(data);
         Object.keys(data).forEach(function (k, v) {
+
           chartLabels.push(k);
           chartData.push(data[k]);
         });
@@ -90,7 +86,9 @@ export default {
   },
   computed: {
     endpoint() {
-      return `/api/gamedata/session/${this.sid}/defintion`;
+    //  this.url = `/api/gamedata/session/${this.sid}/defintion`;
+
+      return `${this.url}`;
     },
   },
 };
