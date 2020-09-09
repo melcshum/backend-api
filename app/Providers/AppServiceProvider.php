@@ -92,7 +92,7 @@ class AppServiceProvider extends ServiceProvider
                     [
                         'text' => 'Start game API',
                         'icon_color' => 'cyan',
-                        'url' => '/api/game/start',
+                        'url' => '/api/protocols/start',
 
                     ]
                 ]

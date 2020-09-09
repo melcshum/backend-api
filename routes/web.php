@@ -154,5 +154,5 @@ Route::post('import', 'MyController@import')->name('import');
 
 
 Route::get('/{any}', function () {
-    return view('/landing......');
+    return view('welcome');
 })->where('any', '.*');
