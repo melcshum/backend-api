@@ -56,4 +56,4 @@ Route::get('/gamedata/difficultyTrace', 'Api\GameDataController@difficultyTrace'
 
 Route::get('/gamedata/difficultyTrace/{name}', 'Api\GameDataController@difficultyTraceByCardName');
 
-Route::get("/chartjs", "Api\ChartController@Chartjs");
+Route::get("/chartjs", "ChartController@Chartjs");
