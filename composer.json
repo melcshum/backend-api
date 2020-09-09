@@ -70,13 +70,11 @@
             "if [ $COMPOSER_DEV_MODE -eq 1 ]; then php artisan ide-helper:generate; fi",
             "if [ $COMPOSER_DEV_MODE -eq 1 ]; then php artisan ide-helper:meta; fi",
             "if [ $COMPOSER_DEV_MODE -eq 1 ]; then php artisan ide-helper:models --nowrite; fi"
-
         ],
         "post-install-cmd": [
             "if [ $COMPOSER_DEV_MODE -eq 1 ]; then php artisan ide-helper:generate; fi",
             "if [ $COMPOSER_DEV_MODE -eq 1 ]; then php artisan ide-helper:meta; fi",
-            "if [ $COMPOSER_DEV_MODE -eq 1 ]; then php artisan ide-helper:models --nowrite; fi",
-            "php artisan optimize"
+            "if [ $COMPOSER_DEV_MODE -eq 1 ]; then php artisan ide-helper:models --nowrite; fi"
         ]
     }
 }
