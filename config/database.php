@@ -12,9 +12,8 @@ $dbPassword = env('DB_PASSWORD', '');
 if (getenv('CLEARDB_DATABASE_URL')) {
     $databaseUrl = parse_url(getenv('CLEARDB_DATABASE_URL'));
 
-
     $dbHost = $databaseUrl['host']??null;
-    $dbPort = $databaseUrl['port']??3306;
+    $dbPort = 3306;
     $dbName = substr($databaseUrl['path'], 1);
     $dbUser = $databaseUrl['user'];
     $dbPassword = $databaseUrl['pass'];
