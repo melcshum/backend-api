@@ -14,11 +14,15 @@ use Illuminate\Support\Collection;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/chart', function () {
     return view('charts.index');
 });
 
-Route::get('/test', function () {
+// Route::get('/test', function () {
 
 
 
@@ -104,9 +108,8 @@ Route::get('/test', function () {
 
     //     ;
 
-});
+// });
 
-Route::get('/', 'GamesController@index');
 
 Auth::routes();
 
@@ -146,7 +149,7 @@ Route::get('/traces', 'TracesController@index')->name('traces.index');
 
 
 
-// import and export
+// // import and export
 // to it later
 Route::get('export', 'MyController@export')->name('export');
 Route::get('importExportView', 'MyController@importExportView');
