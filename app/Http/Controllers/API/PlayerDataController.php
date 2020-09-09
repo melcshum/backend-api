@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\API;
+
+namespace App\Http\Controllers\Api;
 
 use App\GameSession;
 use Illuminate\Support\Facades\DB;
