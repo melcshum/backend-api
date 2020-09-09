@@ -30,8 +30,9 @@ class UpdateSessionInteractionObject extends Migration
     public function down()
     {
         Schema::table('interaction_objects', function (Blueprint $table) {
-            $table->dropColumn('session_id');
-            $table->dropForeign('session_id');
+
+            $table->dropForeign('interaction_objects_game_session_id_foreign');
+            $table->dropColumn('game_session_id');
         });
     }
 }

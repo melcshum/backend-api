@@ -43,7 +43,7 @@ class SetIndexInteractionTable extends Migration
     {
         Schema::table('interaction_definitions', function (Blueprint $table) {
 
-            $table->dropColumn('game_session_id');
+           $table->dropColumn(['game_session_id']);
         });
 
 
@@ -58,7 +58,7 @@ class SetIndexInteractionTable extends Migration
 
         Schema::table('interaction_extensions', function (Blueprint $table) {
 
-            $table->dropIndex('name');
+            $table->dropIndex(['name']);
         });
     }
 }

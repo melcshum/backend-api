@@ -30,8 +30,9 @@ class UpdateGameScenarioRelation extends Migration
     public function down()
     {
         Schema::table('scenarios', function (Blueprint $table) {
+
+            $table->dropForeign(['game_id']);
             $table->dropColumn('game_id');
-            $table->dropForeign('game_id');
         });
     }
 }
