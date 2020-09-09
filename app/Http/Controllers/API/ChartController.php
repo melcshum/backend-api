@@ -27,7 +27,6 @@ class ChartController extends BaseController
         $month = array('Jan', 'Feb', 'Mar', 'Apr', 'May');
         $data  = array(5, 2, 3, 4, 5);
         $label  = 'xyz';
-
         return response()->json(['month' => $month, 'data' => $data, 'label' => $label]);
     }
 }
