@@ -89,7 +89,7 @@ class GameProtocolsController extends BaseController
 
         $scenarios = Scenario::with('prefabs')->where("name", "like", "BasicCard%")->get()->all();
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $ss = array_merge($ss, $scenarios);
         }
 

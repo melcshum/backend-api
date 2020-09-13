@@ -15,7 +15,7 @@ class KnowledgeComponentsController extends Controller
      */
     public function index()
     {
-        $knowledgeComponents = KnowledgeComponent::latest()->paginate(5);
+        $knowledgeComponents = KnowledgeComponent::latest()->paginate(10);
 
         return view('knowledgeComponents.index', compact('knowledgeComponents'));
     }

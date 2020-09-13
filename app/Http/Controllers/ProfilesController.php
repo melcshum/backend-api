@@ -14,7 +14,7 @@ class ProfilesController extends Controller
      */
     public function index()
     {
-        $profiles = Profile::with('user')->paginate(5);
+        $profiles = Profile::with('user')->paginate(20);
         return view('profiles.index', compact('profiles'));
     }
 
@@ -49,7 +49,7 @@ class ProfilesController extends Controller
     {
         $profile =  Profile::with(['game_sessions', 'game_sessions.game'])->where('id', '=', $id)->get()->first();
 
-        $game_sessions = $profile->game_sessions()->paginate(5);
+        $game_sessions = $profile->game_sessions()->paginate(20);
 
         return view("profiles.show", compact(['profile', 'game_sessions']));
     }

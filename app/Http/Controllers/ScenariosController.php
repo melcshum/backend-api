@@ -15,7 +15,7 @@ class ScenariosController extends Controller
      */
     public function index()
     {
-        $scenarios = Scenario::with('prefabs')->paginate(10);
+        $scenarios = Scenario::with('prefabs')->paginate(20);
 
         return view('scenarios.index', compact('scenarios'));
     }

@@ -15,7 +15,7 @@ class GamesController extends Controller
     public function index()
     {
 
-        $games = Game::latest()->paginate(5);
+        $games = Game::latest()->paginate(20);
 
         return view('games.index', compact('games'));
     }
@@ -51,7 +51,7 @@ class GamesController extends Controller
     {
 
         $game =  Game::with('scenarios')->where('id', '=', $game->id)->get()->first();
-        $scenarios=  $game->scenarios()->paginate(5);
+        $scenarios=  $game->scenarios()->paginate(20);
 
         return view('games.show', compact(['game', 'scenarios']));
     }
@@ -67,7 +67,7 @@ class GamesController extends Controller
     {
 
         $game =  Game::with(['game_sessions', 'game_sessions.profile'])->where('id', '=', $game->id)->get()->first();
-        $game_sessions=  $game->game_sessions()->paginate(5);
+        $game_sessions=  $game->game_sessions()->paginate(20);
 
         return view('games.showGameSession', compact(['game', 'game_sessions']));
     }
