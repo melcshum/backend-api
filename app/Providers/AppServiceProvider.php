@@ -66,12 +66,12 @@ class AppServiceProvider extends ServiceProvider
                 'url'  => '/traces',
 
             ]);
-            $event->menu->add([
+            // $event->menu->add([
 
-                'text' => 'Player Data Visualization',
-                'url'  => '/chart',
+            //     'text' => 'Player Data Visualization',
+            //     'url'  => '/chart',
 
-            ]);
+            // ]);
 
             // $event->menu->add(['header' => 'Game_settings']);
             $event->menu->add([

@@ -31,7 +31,7 @@ class CreateUsersSeeder extends Seeder
             User::create($value);
         }
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 99; $i++) {
 
             $u = User::create(
                 [

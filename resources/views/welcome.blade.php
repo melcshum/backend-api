@@ -87,7 +87,9 @@
 
 
             <div class="links">
-                <a href="{{ route('games.index') }}">games</a>
+
+                <a href="{{ route('games.index') }}">Games Analytics Platform</a>
+
             </div>
         </div>
     </div>

@@ -89,7 +89,31 @@ class GameProtocolsController extends BaseController
 
         $scenarios = Scenario::with('prefabs')->where("name", "like", "BasicCard%")->get()->all();
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 10; $i++) {
+            $ss = array_merge($ss, $scenarios);
+        }
+
+        $scenarios = Scenario::with('prefabs')->where("name", "like", "StringAssignment%")->get()->all();
+
+        for ($i = 0; $i < 5; $i++) {
+            $ss = array_merge($ss, $scenarios);
+        }
+        $scenarios = Scenario::with('prefabs')->where("name", "like", "IntegerAssignment%")->get()->all();
+
+        for ($i = 0; $i < 5; $i++) {
+            $ss = array_merge($ss, $scenarios);
+        }
+
+        $scenarios = Scenario::with('prefabs')->where("name", "like", "BasicStatments%")->get()->all();
+
+        for ($i = 0; $i < 5; $i++) {
+            $ss = array_merge($ss, $scenarios);
+        }
+
+
+        $scenarios = Scenario::with('prefabs')->where("name", "like", "ForLoop%")->get()->all();
+
+        for ($i = 0; $i < 3; $i++) {
             $ss = array_merge($ss, $scenarios);
         }
 
